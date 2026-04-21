@@ -5,17 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta property="og:title" content="INHALATURNOS · inhala&co">
 <meta property="og:description" content="Sistema de gestión de consultorios">
-<meta property="og:image" content="https://inhala-turnos.github.io/prueba/preview_nuevo.jpg">
+<meta property="og:image" content="https://inhala-turnos.netlify.app/preview.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:url" content="https://inhala-turnos.github.io/prueba/">
+<meta property="og:url" content="https://inhala-turnos.netlify.app">
 <meta property="og:type" content="website">
 <title>INHALATURNOS</title>
-<link rel="icon" type="image/png" sizes="180x180" href="/prueba/icon-180-nuevo.png">
-<link rel="icon" type="image/png" sizes="192x192" href="/prueba/icon-192-nuevo.png">
-<link rel="icon" type="image/png" sizes="512x512" href="/prueba/icon-512-nuevo.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/prueba/icon-180-nuevo.png">
-<link rel="manifest" href="/prueba/site_nuevo.webmanifest">
+
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#0E1420">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="INHALATURNOS">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
@@ -993,6 +998,7 @@ function renderRooms(){
       else if(state==='free'){cls='free';lbl='Disponible';}
       else if(state==='ongoing'){cls='ongoing';lbl='🔴 En curso — '+sN(bk.userName);}
       else if(state==='mine'){
+        const row=document.createElement('div');row.className='rsrow';
         const pc=getProfColor(bk.userName);
         const chip2=document.createElement('span');chip2.className='rs-chip';
         chip2.style.cssText=`background:${pc.bg};color:${pc.txt};border:1.5px solid ${pc.bd};cursor:pointer;`;
@@ -1001,6 +1007,7 @@ function renderRooms(){
         row.innerHTML=`<span class="rs-time">${h}</span>`;row.appendChild(chip2);bd.appendChild(row);return;
       }
       else if(state==='taken'){
+        const row=document.createElement('div');row.className='rsrow';
         const pc=getProfColor(bk.userName);
         const chip2=document.createElement('span');chip2.className='rs-chip';
         chip2.style.cssText=`background:${pc.bg};color:${pc.txt};border:1.5px solid ${pc.bd};`;
@@ -1271,6 +1278,7 @@ window.confirmBook=async()=>{
 function openCancel(id){
   const bk=allBks.find(b=>b.id===id);if(!bk)return;
   const mine=bk.userId===CU.uid;
+  if(mine&&!hasPerm('cancel')){toast('Sin permiso para cancelar','err');return;}
   if(!mine&&!hasPerm('cancelAll')){toast('Sin permiso','err');return;}
   pCancel=id;const d=new Date(bk.date+'T12:00:00');
   document.getElementById('cancelSub').textContent=`Consultorio ${bk.room} — ${bk.hour} hs — ${DL[d.getDay()]} ${d.getDate()}/${d.getMonth()+1}`;
