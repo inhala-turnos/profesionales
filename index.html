@@ -687,15 +687,56 @@ body{font-family:'Manrope',sans-serif;color:var(--ink);background:var(--bg);}
 <div class="toast-c" id="toastC"></div>
 
 <!-- Firebase SDK -->
-<script type="module">
-import { initializeApp, deleteApp }                   from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
-import { getAuth, signInWithEmailAndPassword,
-         signOut, onAuthStateChanged,
+<!-- Firebase SDK (compat) -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script>
+// ── FIREBASE INIT (compat SDK) ──
+const _app = firebase.initializeApp(FIREBASE_CONFIG);
+const auth = firebase.auth();
+const db   = firebase.firestore();
+
+// Shims so the app logic (written for modular SDK) works with compat SDK
+function initializeApp(cfg, name) { 
+  try { return firebase.app(name); } catch(e) { return firebase.initializeApp(cfg, name); }
+}
+function deleteApp(app) { return app.delete(); }
+function getAuth(app) { return app ? app.auth() : auth; }
+function getFirestore() { return db; }
+function collection(dbOrRef, col) { return dbOrRef.collection(col); }
+function doc(dbOrRef, col, id) { return dbOrRef.collection(col).doc(id); }
+async function getDocs(q) { return q.get(); }
+async function getDoc(ref) { return ref.get(); }
+async function setDoc(ref, data, opts) { return opts && opts.merge ? ref.set(data, {merge:true}) : ref.set(data); }
+async function addDoc(colRef, data) { return colRef.add(data); }
+async function deleteDoc(ref) { return ref.delete(); }
+async function updateDoc(ref, data) { return ref.update(data); }
+function onSnapshot(ref, cb) {
+  return ref.onSnapshot(snap => {
+    // Compat SDK collection snapshots already have .docs
+    // For document snapshots, wrap in a fake collection-like object
+    if (typeof snap.docs === 'undefined') {
+      const normalized = { docs: [snap], forEach: (fn) => fn(snap) };
+      cb(normalized);
+    } else {
+      cb(snap);
+    }
+  });
+}
+async function signInWithEmailAndPassword(a, e, p) { return a.signInWithEmailAndPassword(e, p); }
+async function signOut(a) { return (a||auth).signOut(); }
+function onAuthStateChanged(a, cb) { return (a||auth).onAuthStateChanged(cb); }
+async function createUserWithEmailAndPassword(a, e, p) { return a.createUserWithEmailAndPassword(e, p); }
+async function sendPasswordResetEmail(a, e) { return (a||auth).sendPasswordResetEmail(e); }
+function serverTimestamp() { return firebase.firestore.FieldValue.serverTimestamp(); }
+// query/where not needed since we use collection directly
+</script>
+<script>
+
          createUserWithEmailAndPassword, sendPasswordResetEmail } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
-import { getFirestore, collection, doc,
          getDocs, getDoc, setDoc, addDoc,
          deleteDoc, updateDoc, onSnapshot,
-         query, where, serverTimestamp }              from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 
 // ── INIT ──
 const app  = initializeApp(FIREBASE_CONFIG);
@@ -831,7 +872,8 @@ onAuthStateChanged(auth,async firebaseUser=>{
   CU=firebaseUser;
   // Cargar perfil del usuario desde Firestore. Nunca asignar admin automáticamente.
   const profileSnap=await getDoc(doc(db,'users',CU.uid));
-  if(!profileSnap.exists()){
+  const profileExists = typeof profileSnap.exists === 'function' ? profileSnap.exists() : profileSnap.exists;
+  if(!profileExists){
     CUProfile={uid:CU.uid,email:CU.email,name:CU.email?.split('@')[0]||'Usuario',role:'user',perms:['book','cancel'],status:'pending',createdAt:serverTimestamp()};
     await setDoc(doc(db,'users',CU.uid),CUProfile,{merge:true});
   }else{
@@ -984,7 +1026,7 @@ function buildChips(){
 function setChip(btn){document.querySelectorAll('.rc').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
 
 // ── GRID ──
-function renderGrid(){
+window.renderGrid=function renderGrid(){
   const dates=getWkDates(wOff);const tk=todK();
   const d0=dates[0],d6=dates[6];
   const rangeStr=d0.getDate()+' '+MN[d0.getMonth()]+(d0.getMonth()!==d6.getMonth()||d0.getFullYear()!==d6.getFullYear()?'':'')+' — '+d6.getDate()+' '+MN[d6.getMonth()]+' '+d6.getFullYear();
@@ -1065,7 +1107,7 @@ window.chW=d=>{wOff+=d;renderGrid();};
 window.goToday=()=>{wOff=0;renderGrid();};
 
 // ── ROOMS ──
-function renderRooms(){
+window.renderRooms=function renderRooms(){
   const dv=document.getElementById('rvDate').value;if(!dv)return;
   const grid=document.getElementById('roomsGrid');grid.innerHTML='';
   ROOMS.forEach(r=>{
@@ -1267,7 +1309,7 @@ window.confirmBlock=async()=>{
   if(created===0)toast('Esos bloqueos ya existen','warn');
   else toast(`${created} bloqueo${created!==1?'s':''} creado${created!==1?'s':''} ✓`,'ok');
 };
-function renderBlocks(){
+window.renderBlocks=function renderBlocks(){
   if(CUProfile.role!=='admin')return;
   document.getElementById('blocksStats').innerHTML=`
     <div class="sc"><div class="sc-top"><div class="sc-lbl">Total bloqueos</div><div class="sc-ico io">🔒</div></div><div class="sc-val">${allBlocks.length}</div><div class="sc-sub">Activos</div></div>
@@ -1337,7 +1379,7 @@ function mkDonut(occ,free){
 }
 
 // ── BOOK ──
-function openBook(date,hour,fR){
+window.openBook=function openBook(date,hour,fR){
   if(!hasPerm('book')){toast('Sin permiso para reservar','err');return;}
   // fR ya contiene solo consultorios libres (filtrados en renderGrid), verificar que sigue siendo válido
   if(!fR||fR.length===0){toast('Ese horario está bloqueado','err');return;}
@@ -1376,7 +1418,7 @@ window.confirmBook=async()=>{
 };
 
 // ── CANCEL ──
-function openCancel(id){
+window.openCancel=function openCancel(id){
   const bk=findBookingById(id);if(!bk)return;
   const mine=bk.userId===CU.uid;
   if((mine&&!hasPerm('cancel'))||(!mine&&!hasPerm('cancelAll'))){toast('Sin permiso','err');return;}
@@ -1519,7 +1561,9 @@ window.toast=(msg,type='inf')=>{
   const dur=type==='err'?5000:type==='warn'?4000:3200;
   setTimeout(()=>{t.style.transition='all .3s';t.style.opacity='0';t.style.transform='translateX(18px)';setTimeout(()=>t.remove(),300);},dur);
 };
+
 </script>
+
 
 <nav class="mobile-nav" id="mobileNav">
   <button class="mn-item active" id="mni-grid" onclick="sv('gridView',this); setMNI(this)"><span class="mn-ico-wrap"><span class="mn-ico"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="17" rx="2" fill="currentColor" fill-opacity="0.2"/><path d="M3 9h18M8 4v2M16 4v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/><rect x="3" y="4" width="18" height="17" rx="2" stroke="currentColor" stroke-width="1.8" fill="none"/><circle cx="17" cy="15" r="3.5" fill="currentColor" fill-opacity="0.3" stroke="currentColor" stroke-width="1.4"/><path d="M17 13.5v1.8l1 1" stroke="white" stroke-width="1.2" stroke-linecap="round" fill="none"/></svg></span></span><span class="mn-lbl">Agenda</span></button>
