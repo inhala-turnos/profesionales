@@ -214,7 +214,12 @@ body{font-family:'Manrope',sans-serif;color:var(--ink);background:var(--bg);}
 .dth-day{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--ink4);}
 .dth.tdy{background:var(--accent-xlight);}
 .dth.tdy .dth-num,.dth.tdy .dth-day{color:var(--accent);}
+.dth.past-day{background:#EEF1F6;}
+.dth.past-day .dth-num{color:#8B93A6;}
+.dth.past-day .dth-day{color:#A7ADBA;}
 .gtbl tbody td{padding:3px 4px;border-bottom:1px solid var(--border);border-right:1px solid var(--border);vertical-align:top;}
+.gtbl tbody td.past-day-cell{background:#F4F6FA;}
+.gtbl tbody td.past-slot-cell{background:#F7F8FB;}
 .gtbl tbody td:last-child{border-right:none;}
 .gtbl tbody tr:last-child td{border-bottom:none;}
 .ttd{font-size:11px;font-weight:700;color:var(--ink4);text-align:right;padding:5px 12px 5px 8px;background:#FAFBFD;border-right:2px solid var(--border) !important;white-space:nowrap;width:50px;vertical-align:middle;}
@@ -223,14 +228,18 @@ body{font-family:'Manrope',sans-serif;color:var(--ink);background:var(--bg);}
 .sl.free{background:var(--emerald-light);border:1.5px dashed #6EE7B7;}.sl.free::after{background:var(--emerald);}
 .sl.free:hover{background:#C7F5E5;transform:scale(1.025);}
 .sl.blkd{background:#F1F5F9;border:1.5px solid #CBD5E1;cursor:default;}.sl.blkd::after{background:#94A3B8;}
+.sl.past{background:#EEF1F6;border:1.5px solid #D7DDE8;color:#8B93A6;cursor:default;filter:saturate(.45);}.sl.past::after{background:#A7ADBA;}
 .sl.ongoing{background:#ECFDF5;border:1.5px solid #6EE7B7;cursor:default;}.sl.ongoing::after{background:#10B981;}
 .sl.ongoing .sl-st{color:#065F46;}.sl.ongoing .sl-nm{color:#065F46;}
-.sl.prof{cursor:default;}.sl.prof::after{background:var(--prof-color,#94A3B8);}
+.sl.prof{cursor:default;box-shadow:inset 0 0 0 1px rgba(255,255,255,.45);}.sl.prof::after{background:var(--prof-color,#94A3B8);}
+.sl.prof.past-prof{cursor:default;filter:saturate(.35);opacity:.62;background:#EEF1F6!important;border-color:#D7DDE8!important;box-shadow:none;}
+.sl.prof.past-prof::after{background:#A7ADBA;}
+.sl.prof.past-prof .sl-st,.sl.prof.past-prof .sl-nm{color:#7F8798!important;}
 .sl.prof.clickable{cursor:pointer;}.sl.prof.clickable:hover{opacity:.82;transform:scale(1.01);}
 .book-notice{margin-top:14px;padding:10px 14px;border-radius:var(--r12);background:#F0FDF4;border:1.5px solid #6EE7B7;font-size:12px;font-weight:600;color:#065F46;display:flex;align-items:center;gap:8px;}
 .blk-date-range{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 .sl-st{font-size:9px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;margin-bottom:1px;}
-.sl.free .sl-st{color:#065F46;}.sl.blkd .sl-st{color:var(--ink4);}
+.sl.free .sl-st{color:#065F46;}.sl.blkd .sl-st,.sl.past .sl-st{color:var(--ink4);}
 .sl-nm{font-size:11px;font-weight:700;color:var(--ink);white-space:normal;overflow:visible;text-overflow:unset;word-break:break-word;}
 .fchip{min-height:44px;border-radius:9px;background:var(--emerald-light);border:1.5px dashed #6EE7B7;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;padding:5px;transition:all var(--t);}
 .fchip:hover{background:#C7F5E5;transform:scale(1.025);}
@@ -259,10 +268,14 @@ body{font-family:'Manrope',sans-serif;color:var(--ink);background:var(--bg);}
 .bk-section-hd{font-size:10px;font-weight:800;color:var(--ink4);text-transform:uppercase;letter-spacing:.8px;padding:4px 2px 2px;}
 .bk-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r16);box-shadow:var(--s1);padding:14px 16px;display:flex;align-items:center;gap:12px;transition:box-shadow var(--t),transform var(--t);}
 .bk-card:hover{box-shadow:var(--s3);transform:translateY(-1px);}
+.bk-card.bk-future-card{border-color:#C7D2FE;background:#FCFDFF;}
+.bk-card.bk-past-card{background:#F5F7FA;border-color:#DDE3EE;box-shadow:none;filter:saturate(.45);}
+.bk-card.bk-past-card:hover{transform:none;box-shadow:var(--s1);}
+.bk-card.bk-past-card .bk-main,.bk-card.bk-past-card .bk-date{color:#8A93A5;}
 .bk-status-pill{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:800;padding:3px 8px;border-radius:var(--rpill);}
 .bk-ongoing-pill{background:#ECFDF5;color:#065F46;}
-.bk-past-pill{background:var(--bg2);color:var(--ink4);}
-.bk-future-pill{background:var(--violet-light);color:#5B21B6;}
+.bk-past-pill{background:#E2E8F0;color:#7B8496;}
+.bk-future-pill{background:#EDE9FE;color:#5B21B6;}
 
 .bk-badge{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;flex-shrink:0;}
 .bk-main{font-size:14px;font-weight:700;color:var(--ink);}
@@ -696,14 +709,22 @@ const RC=['C1','C2','C3','C4','C5','C6'];
 const AV=['av0','av1','av2','av3','av4','av5','av6','av7'];
 const RC_COLORS=['#1A4FE8','#0891B2','#7C3AED','#D97706','#059669','#DB2777'];
 const PROF_SLOT_COLORS=[
-  {bg:'#EBF0FD',bd:'#93BBFF',lft:'#1A4FE8',txt:'#0D33A8'},
-  {bg:'#E0F2FE',bd:'#67E8F9',lft:'#0891B2',txt:'#164E63'},
-  {bg:'#F0EBFF',bd:'#C4B5FD',lft:'#7C3AED',txt:'#4C1D95'},
-  {bg:'#FEF3C7',bd:'#FCD34D',lft:'#D97706',txt:'#78350F'},
-  {bg:'#DCFCE7',bd:'#6EE7B7',lft:'#059669',txt:'#065F46'},
-  {bg:'#FCE7F3',bd:'#F9A8D4',lft:'#DB2777',txt:'#831843'},
-  {bg:'#FEF0F2',bd:'#FCA5A5',lft:'#E8324A',txt:'#9F1239'},
-  {bg:'#EEF2FF',bd:'#A5B4FC',lft:'#6366F1',txt:'#3730A3'},
+  {bg:'#DBEAFE',bd:'#2563EB',lft:'#1D4ED8',txt:'#1E3A8A'},
+  {bg:'#DCFCE7',bd:'#16A34A',lft:'#15803D',txt:'#14532D'},
+  {bg:'#F3E8FF',bd:'#9333EA',lft:'#7E22CE',txt:'#581C87'},
+  {bg:'#FEF3C7',bd:'#D97706',lft:'#B45309',txt:'#78350F'},
+  {bg:'#FFE4E6',bd:'#E11D48',lft:'#BE123C',txt:'#881337'},
+  {bg:'#CCFBF1',bd:'#0D9488',lft:'#0F766E',txt:'#134E4A'},
+  {bg:'#FFEDD5',bd:'#EA580C',lft:'#C2410C',txt:'#7C2D12'},
+  {bg:'#E0E7FF',bd:'#4F46E5',lft:'#4338CA',txt:'#312E81'},
+  {bg:'#ECFCCB',bd:'#65A30D',lft:'#4D7C0F',txt:'#365314'},
+  {bg:'#FAE8FF',bd:'#C026D3',lft:'#A21CAF',txt:'#701A75'},
+  {bg:'#FEE2E2',bd:'#DC2626',lft:'#B91C1C',txt:'#7F1D1D'},
+  {bg:'#CFFAFE',bd:'#0891B2',lft:'#0E7490',txt:'#164E63'},
+  {bg:'#F5F3FF',bd:'#7C3AED',lft:'#6D28D9',txt:'#4C1D95'},
+  {bg:'#F0FDFA',bd:'#14B8A6',lft:'#0F766E',txt:'#134E4A'},
+  {bg:'#FFF7ED',bd:'#F97316',lft:'#C2410C',txt:'#7C2D12'},
+  {bg:'#FDF2F8',bd:'#DB2777',lft:'#BE185D',txt:'#831843'},
 ];
 
 // ── STATE ──
@@ -731,7 +752,15 @@ const isToday=s=>s===todK();
 const isPast=s=>s<todK();
 const isFuture=s=>s>todK();
 const isPastSlot=(date,hour)=>new Date(date+'T'+hour+':00')<=new Date();
-const getProfColor=name=>PROF_SLOT_COLORS[avI(name||'')];
+function getProfColor(name){
+  const key=String(name||'Sin profesional').trim();
+  const names=[...new Set([
+    ...allUsers.map(u=>u.name||u.email).filter(Boolean),
+    ...allBks.map(b=>b.userName).filter(Boolean)
+  ])].sort((a,b)=>a.localeCompare(b,'es',{sensitivity:'base'}));
+  const idx=names.indexOf(key);
+  return PROF_SLOT_COLORS[(idx>=0?idx:avI(key))%PROF_SLOT_COLORS.length];
+}
 const getWkKeys=()=>getWkDates(0).map(dk);
 const getMonthPfx=()=>{const n=new Date();return n.getFullYear()+'-'+String(n.getMonth()+1).padStart(2,'0');};
 function getWkDates(off=0){const t=new Date();t.setHours(0,0,0,0);const d=t.getDay();const diff=(d===0?-6:1-d);const m=new Date(t);m.setDate(t.getDate()+diff+off*7);return Array.from({length:7},(_,i)=>{const x=new Date(m);x.setDate(m.getDate()+i);return x;});}
@@ -940,13 +969,16 @@ function renderGrid(){
   const tbl=document.getElementById('mainGrid');tbl.innerHTML='';
   const thead=document.createElement('thead');const hr=document.createElement('tr');
   hr.innerHTML='<th style="width:50px;background:#FAFBFD;border-right:2px solid var(--border)"></th>';
-  dates.forEach(d=>{const isT=dk(d)===tk;hr.innerHTML+=`<th class="dth${isT?' tdy':''}"><div class="dth-inner"><span class="dth-num">${d.getDate()}</span><span class="dth-day">${DS[d.getDay()]}</span></div></th>`;});
+  dates.forEach(d=>{const dkey=dk(d);const isT=dkey===tk;const isPastDay=dkey<tk;hr.innerHTML+=`<th class="dth${isT?' tdy':''}${isPastDay?' past-day':''}"><div class="dth-inner"><span class="dth-num">${d.getDate()}</span><span class="dth-day">${DS[d.getDay()]}</span></div></th>`;});
   thead.appendChild(hr);tbl.appendChild(thead);
   const tbody=document.createElement('tbody');
   HOURS.forEach(h=>{
     const tr=document.createElement('tr');tr.innerHTML=`<td class="ttd">${h}</td>`;
     dates.forEach(d=>{
       const dkey=dk(d);const td=document.createElement('td');td.style.padding='3px 4px';
+      const isPastDay=dkey<tk;const isPastHour=isPastSlot(dkey,h);
+      if(isPastDay)td.classList.add('past-day-cell');
+      if(isPastHour)td.classList.add('past-slot-cell');
       if(selR===0){
         const wrap=document.createElement('div');wrap.style.cssText='display:flex;flex-direction:column;gap:3px;min-height:44px;padding:2px;';
         const fR=[];
@@ -961,12 +993,13 @@ function renderGrid(){
           } else {
             const pc=getProfColor(bk.userName);
             const isMe=state==='mine';
-            el.className='sl prof'+(((isMe&&hasPerm('cancel'))||(!isMe&&hasPerm('cancelAll')))?' clickable':'');
+            const isPastBooked=isPastSlot(dkey,h);
+            el.className='sl prof'+(isPastBooked?' past-prof':(((isMe&&hasPerm('cancel'))||(!isMe&&hasPerm('cancelAll')))?' clickable':''));
             el.style=`width:100%;background:${pc.bg};border:1.5px solid ${pc.bd};`;
             el.style.setProperty('--prof-color',pc.lft);
             el.innerHTML=`<div class="sl-st" style="color:${pc.txt}">${isMe?'✓ Mío':'C'+r}</div><div class="sl-nm" style="color:${pc.txt}">${esc(sN(bk.userName))}</div>`;
-            if(isMe&&hasPerm('cancel')){el.onclick=()=>openCancel(bk.id);}
-            else if(!isMe&&hasPerm('cancelAll')){el.onclick=()=>openCancel(bk.id);}
+            if(!isPastBooked&&isMe&&hasPerm('cancel')){el.onclick=()=>openCancel(bk.id);}
+            else if(!isPastBooked&&!isMe&&hasPerm('cancelAll')){el.onclick=()=>openCancel(bk.id);}
           }
           wrap.appendChild(el);
         });
@@ -981,17 +1014,18 @@ function renderGrid(){
       }else{
         const {state,bk}=slotState(dkey,h,selR);
         const el=document.createElement('div');
-        if(state==='blkd'||state==='past'){el.className='sl blkd';el.innerHTML=`<div class="sl-st">${state==='past'?'No disponible':'Bloqueado'}</div>`;}
+        if(state==='blkd'||state==='past'){el.className=state==='past'?'sl past':'sl blkd';el.innerHTML=`<div class="sl-st">${state==='past'?'No disponible':'Bloqueado'}</div>`;}
         else if(state==='free'){el.className='sl free';el.innerHTML='<div class="sl-st">Libre</div>';if(hasPerm('book'))el.onclick=()=>openBook(dkey,h,[selR]);else el.style.cursor='default';}
         else if(state==='ongoing'){el.className='sl ongoing';el.innerHTML=`<div class="sl-st">🔴 En curso</div><div class="sl-nm">${esc(sN(bk.userName))}</div>`;}
         else{
           const pc=getProfColor(bk.userName);const isMe=state==='mine';
-          el.className='sl prof'+(((isMe&&hasPerm('cancel'))||(!isMe&&hasPerm('cancelAll')))?' clickable':'');
+          const isPastBooked=isPastSlot(dkey,h);
+          el.className='sl prof'+(isPastBooked?' past-prof':(((isMe&&hasPerm('cancel'))||(!isMe&&hasPerm('cancelAll')))?' clickable':''));
           el.style=`background:${pc.bg};border:1.5px solid ${pc.bd};`;
           el.style.setProperty('--prof-color',pc.lft);
           el.innerHTML=`<div class="sl-st" style="color:${pc.txt}">${isMe?'✓ Mi turno':'Ocupado'}</div><div class="sl-nm" style="color:${pc.txt}">${esc(sN(bk.userName))}</div>`;
-          if(isMe&&hasPerm('cancel')){el.onclick=()=>openCancel(bk.id);}
-          else if(!isMe&&hasPerm('cancelAll')){el.onclick=()=>openCancel(bk.id);}
+          if(!isPastBooked&&isMe&&hasPerm('cancel')){el.onclick=()=>openCancel(bk.id);}
+          else if(!isPastBooked&&!isMe&&hasPerm('cancelAll')){el.onclick=()=>openCancel(bk.id);}
         }
         td.appendChild(el);
       }
@@ -1025,17 +1059,19 @@ function renderRooms(){
       else if(state==='mine'){
         const pc=getProfColor(bk.userName);
         const chip2=document.createElement('span');chip2.className='rs-chip';
-        chip2.style.cssText=`background:${pc.bg};color:${pc.txt};border:1.5px solid ${pc.bd};cursor:pointer;`;
+        const pastBooked=isPastSlot(dv,h);
+        chip2.style.cssText=pastBooked?`background:#EEF1F6;color:#7F8798;border:1.5px solid #D7DDE8;filter:saturate(.35);`:`background:${pc.bg};color:${pc.txt};border:1.5px solid ${pc.bd};cursor:pointer;`;
         chip2.textContent='✓ Mi turno';
-        if(hasPerm('cancel'))chip2.onclick=()=>openCancel(bk.id);
+        if(!pastBooked&&hasPerm('cancel'))chip2.onclick=()=>openCancel(bk.id);
         row.innerHTML=`<span class="rs-time">${h}</span>`;row.appendChild(chip2);bd.appendChild(row);return;
       }
       else if(state==='taken'){
         const pc=getProfColor(bk.userName);
         const chip2=document.createElement('span');chip2.className='rs-chip';
-        chip2.style.cssText=`background:${pc.bg};color:${pc.txt};border:1.5px solid ${pc.bd};`;
+        const pastBooked=isPastSlot(dv,h);
+        chip2.style.cssText=pastBooked?`background:#EEF1F6;color:#7F8798;border:1.5px solid #D7DDE8;filter:saturate(.35);`:`background:${pc.bg};color:${pc.txt};border:1.5px solid ${pc.bd};`;
         chip2.textContent=sN(bk.userName);
-        if(hasPerm('cancelAll'))chip2.onclick=()=>openCancel(bk.id);
+        if(!pastBooked&&hasPerm('cancelAll'))chip2.onclick=()=>openCancel(bk.id);
         row.innerHTML=`<span class="rs-time">${h}</span>`;row.appendChild(chip2);bd.appendChild(row);return;
       }
       const chip=document.createElement('span');chip.className='rs-chip '+cls;chip.textContent=lbl;
@@ -1051,23 +1087,23 @@ function renderMy(){
   const bks=activeBks().filter(b=>b.userId===CU.uid).sort((a,b)=>a.date.localeCompare(b.date)||a.hour.localeCompare(b.hour));
   const list=document.getElementById('myList');list.innerHTML='';
   if(!bks.length){list.innerHTML='<div class="empty"><div class="empty-i">📭</div><div class="empty-t">Sin turnos reservados</div></div>';return;}
-  const upcoming=bks.filter(b=>!isPast(b.date));
-  const past=bks.filter(b=>isPast(b.date));
+  const upcoming=bks.filter(b=>!isPastSlot(b.date,b.hour));
+  const past=bks.filter(b=>isPastSlot(b.date,b.hour));
   const mkCard=b=>{
     const d=new Date(b.date+'T12:00:00');
     const isOngoing=b.date===today&&b.hour===curH;
-    const isPastB=isPast(b.date);
+    const isPastB=isPastSlot(b.date,b.hour);
     const pc=getProfColor(b.userName||'');
     const item=document.createElement('div');
-    item.className='bk-card'+(isOngoing?' bk-ongoing':'');
-    item.style=isOngoing?`border-color:#6EE7B7;background:#F0FDF4;`:'';
+    item.className='bk-card'+(isOngoing?' bk-ongoing':isPastB?' bk-past-card':' bk-future-card');
+    item.style=isOngoing?`border-color:#6EE7B7;background:#F0FDF4;`:isPastB?`border-left:4px solid #A7ADBA;`:`border-left:4px solid ${pc.lft};`;
     let statusBadge='';
     if(isOngoing) statusBadge='<span class="bk-status-pill bk-ongoing-pill">🔴 En curso</span>';
     else if(isPastB) statusBadge='<span class="bk-status-pill bk-past-pill">Pasado</span>';
     else statusBadge='<span class="bk-status-pill bk-future-pill">Próximo</span>';
     const canCancel=hasPerm('cancel')&&!isPastB&&!isOngoing;
     item.innerHTML=`
-      <div class="bk-badge" style="background:${pc.lft}">C${b.room}</div>
+      <div class="bk-badge" style="background:${isPastB?'#94A3B8':pc.lft}">C${b.room}</div>
       <div class="bk-flex">
         <div class="bk-main">Consultorio ${b.room} — ${b.hour} hs</div>
         <div class="bk-date">${DL[d.getDay()]}, ${d.getDate()} de ${MN[d.getMonth()]}</div>
@@ -1452,6 +1488,12 @@ window.setMNI=function(btn){
 </script>
 </body>
 </html>
+
+
+
+
+
+
 
 
 
