@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Inhala | Consultorios</title>
   <meta name="description" content="Directorio de profesionales de Inhala Consultorios con contacto por WhatsApp y panel de administración." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #ffffff;
@@ -1183,6 +1186,1470 @@
         min-height: 60px;
       }
     }
+
+    /* Stitch Inhala layer: visual system only, existing JS and routes remain intact. */
+    :root {
+      --bg: #fcf9f8;
+      --surface: #fcf9f8;
+      --surface-soft: #f6f3f2;
+      --surface-card: #ffffff;
+      --surface-muted: #f0edec;
+      --ink: #1c1b1b;
+      --muted: #414846;
+      --line: #c1c8c4;
+      --green: #01261f;
+      --green-2: #1a3c34;
+      --teal: #43655c;
+      --sage: #c9e8cb;
+      --coral: #ba1a1a;
+      --whatsapp: #25d366;
+      --shadow: 0 8px 30px rgba(1, 38, 31, 0.06);
+      --shadow-strong: 0 18px 48px rgba(1, 38, 31, 0.12);
+      --radius: 12px;
+      --font-body: Manrope, "Segoe UI", Helvetica, Arial, sans-serif;
+      --font-display: "Plus Jakarta Sans", Manrope, "Segoe UI", Helvetica, Arial, sans-serif;
+      --body-size: 16px;
+      --heading-weight: 800;
+      --panel-card-text: #01261f;
+      --panel-title-size: 42px;
+      --panel-card-title-size: 22px;
+      --brand-text-size: 23px;
+      --nav-text-size: 17px;
+      --hero-box-width: 900px;
+      --hero-box-min-height: 260px;
+      --hero-box-padding: 46px;
+      --hero-box-radius: 18px;
+      --hero-box-rgb: 1 38 31;
+      --hero-box-opacity: 0.58;
+      --hero-title-size: 52px;
+      --hero-title-color: #ffffff;
+      --hero-subtitle-size: 20px;
+      --hero-subtitle-color: #ffffff;
+      --hero-search-text-size: 16px;
+      --hero-search-text-color: #4d5754;
+      --hero-button-text-size: 12px;
+      --hero-button-text-color: #ffffff;
+      --top-right-logo-size: 42px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-body);
+      letter-spacing: 0;
+    }
+    h1, h2, h3, p { margin: 0; }
+    h1, h2, h3, .brand, .landing-brand, .site-footer strong {
+      font-family: var(--font-display);
+      color: var(--green);
+      letter-spacing: -0.02em;
+    }
+    h1 {
+      max-width: none;
+      font-size: clamp(42px, 5vw, 72px);
+      line-height: 1.08;
+      font-weight: 800;
+    }
+    h2 {
+      font-size: clamp(28px, 3vw, 42px);
+      line-height: 1.15;
+      font-weight: 800;
+    }
+    .lead {
+      color: var(--muted);
+      font-size: clamp(16px, 1.7vw, 20px);
+      line-height: 1.6;
+    }
+    .hint, .meta {
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .app {
+      width: 100%;
+      max-width: none;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    main {
+      width: min(100%, 1600px);
+      margin: 0 auto;
+      padding: 112px clamp(22px, 2.8vw, 48px) 96px;
+      flex: 1;
+    }
+    body[data-route="landing"] main {
+      width: 100%;
+      max-width: none;
+      padding: 0;
+    }
+
+    .topbar {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 50;
+      min-height: 72px;
+      padding: 0 clamp(22px, 2.8vw, 48px);
+      background: rgba(252, 249, 248, 0.86);
+      border-bottom: 1px solid rgba(193, 200, 196, 0.38);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 2px 12px rgba(1, 38, 31, 0.04);
+    }
+    body[data-route="landing"] .topbar {
+      display: none;
+    }
+    .brand {
+      gap: 0;
+      font-size: var(--brand-text-size);
+      font-weight: 800;
+      color: #06100d;
+    }
+    .brand-logo { display: none; }
+    .desktop-nav {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      align-items: center;
+      gap: 34px;
+    }
+    .desktop-nav-link {
+      border: 0;
+      border-bottom: 3px solid transparent;
+      padding: 0 0 8px;
+      background: transparent;
+      color: #161918;
+      font: 500 var(--nav-text-size)/1 var(--font-body);
+    }
+    .desktop-nav-link.active {
+      border-color: #111;
+      color: #000;
+      font-weight: 800;
+    }
+    .top-actions {
+      gap: 14px;
+    }
+    .top-search,
+    .admin-login-link,
+    .whatsapp-link {
+      display: inline-grid;
+      place-items: center;
+      min-height: 40px;
+      border: 0;
+      background: transparent;
+      color: #07110e;
+      box-shadow: none;
+    }
+    .top-search {
+      width: 42px;
+      border-radius: 999px;
+    }
+    .top-search:hover { background: var(--surface-muted); }
+    .admin-login-link {
+      min-width: var(--top-right-logo-size);
+      width: var(--top-right-logo-size);
+      height: var(--top-right-logo-size);
+      padding: 0;
+      border-radius: 50%;
+      overflow: hidden;
+      color: transparent;
+      border: 0;
+      background: transparent;
+      position: relative;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    .admin-login-link.has-logo {
+      border: 1px solid rgba(1, 38, 31, 0.16);
+      background-color: var(--surface-card);
+      color: transparent;
+    }
+    .admin-login-link.has-logo::before,
+    .admin-login-link.has-logo::after {
+      display: none;
+    }
+    .admin-login-link::before {
+      content: "";
+      width: 24px;
+      height: 24px;
+      border: 3px solid #080c0b;
+      border-radius: 50%;
+      box-shadow: inset 0 -10px 0 -6px #080c0b;
+    }
+    .admin-login-link::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 8px;
+      width: 18px;
+      height: 8px;
+      border: 3px solid #080c0b;
+      border-top-left-radius: 14px;
+      border-top-right-radius: 14px;
+      border-bottom: 0;
+      transform: translateX(-50%);
+    }
+    .whatsapp-link { display: none; }
+    .icon-btn {
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+      color: #07110e;
+    }
+
+    .landing {
+      min-height: 100svh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      place-items: center;
+      gap: 32px;
+      padding: 96px clamp(22px, 5vw, 72px) 48px;
+      background: var(--bg);
+      overflow: hidden;
+    }
+    .landing::before,
+    .landing::after,
+    .landing-branch,
+    .landing-outline,
+    .landing-blur-leaf,
+    .landing-logo-shell,
+    .landing-divider {
+      display: none;
+    }
+    .landing-nav {
+      position: absolute;
+      top: 30px;
+      left: clamp(22px, 5vw, 72px);
+      right: clamp(22px, 5vw, 72px);
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .landing-brand {
+      font-size: 24px;
+      color: #06100d;
+      font-weight: 800;
+    }
+    .landing-nav span {
+      color: #414846;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .landing-media {
+      width: min(100%, 960px);
+      height: clamp(360px, 58vh, 600px);
+      border-radius: 14px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: var(--shadow);
+    }
+    .landing-media::after {
+      display: none;
+    }
+    .landing-media img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+      filter: none;
+    }
+    .landing-card {
+      width: min(100%, 760px);
+      min-height: 0;
+      margin-top: -330px;
+      padding: 0 clamp(16px, 3vw, 32px);
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      backdrop-filter: none;
+      color: white;
+      z-index: 1;
+      text-align: center;
+    }
+    .landing-card {
+      padding: clamp(22px, 4vw, 42px);
+      border-radius: 18px;
+      background: rgba(1, 38, 31, 0.58);
+      backdrop-filter: blur(10px);
+    }
+    .landing-card::before { display: none; }
+    .landing-card h1 {
+      color: white;
+      font-size: clamp(44px, 5vw, 76px);
+      text-shadow: 0 6px 26px rgba(0, 0, 0, 0.22);
+    }
+    .landing-card .lead {
+      max-width: 640px;
+      margin: 20px auto 0;
+      color: rgba(255, 255, 255, 0.96);
+      font-size: clamp(17px, 1.8vw, 22px);
+      font-weight: 700;
+      text-shadow: 0 4px 18px rgba(0, 0, 0, 0.24);
+    }
+    .landing-card .primary {
+      min-width: 250px;
+      min-height: 58px;
+      margin-top: 42px;
+      background: var(--green);
+      border: 1px solid #001c17;
+      border-radius: 999px;
+      color: white;
+      box-shadow: 0 12px 26px rgba(1, 38, 31, 0.18);
+      font-weight: 800;
+    }
+    .corner-admin {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(1, 38, 31, 0.2);
+      background: rgba(252, 249, 248, 0.82);
+      color: transparent;
+      opacity: 0.65;
+      backdrop-filter: blur(10px);
+    }
+    .corner-admin:hover,
+    .corner-admin:focus-visible {
+      width: auto;
+      min-width: 106px;
+      height: 40px;
+      padding: 0 16px;
+      color: var(--green);
+      opacity: 1;
+      font-size: 13px;
+      font-weight: 800;
+      border-radius: 999px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      min-height: 500px;
+      margin: 0 0 76px;
+      padding: clamp(42px, 5vw, 80px);
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      color: white;
+      text-align: center;
+      overflow: hidden;
+      background:
+        var(--hero-image, url("https://images.unsplash.com/photo-1463320726281-696a485928c7?q=80&w=1400&auto=format&fit=crop"));
+      background-size: cover;
+      background-position: center;
+      box-shadow: none;
+      position: relative;
+    }
+    .hero::before {
+      display: none;
+    }
+    .hero::after,
+    .hero-card {
+      display: none;
+    }
+    .hero > div:first-child {
+      position: relative;
+      z-index: 1;
+      width: min(100%, var(--hero-box-width));
+      min-height: var(--hero-box-min-height);
+      display: grid;
+      justify-items: center;
+      padding: var(--hero-box-padding);
+      border-radius: var(--hero-box-radius);
+      background: rgb(var(--hero-box-rgb) / var(--hero-box-opacity));
+      backdrop-filter: blur(10px);
+    }
+    .hero h1 {
+      max-width: 820px;
+      color: var(--hero-title-color);
+      font-size: var(--hero-title-size);
+      text-shadow: 0 6px 22px rgba(0, 0, 0, 0.22);
+    }
+    .hero .lead {
+      max-width: 650px;
+      margin: 22px auto 0;
+      color: var(--hero-subtitle-color);
+      font-size: var(--hero-subtitle-size);
+      font-weight: 800;
+      line-height: 1.45;
+      text-shadow: 0 5px 18px rgba(0, 0, 0, 0.2);
+    }
+    .hero .lead strong { display: none; }
+    .search-panel {
+      width: min(100%, 900px);
+      min-height: 76px;
+      margin: 52px auto 0;
+      padding: 12px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid rgba(193, 200, 196, 0.45);
+      border-radius: 999px;
+      background: rgba(252, 249, 248, 0.9);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 14px 32px rgba(1, 38, 31, 0.12);
+    }
+    .searchbox input,
+    .field,
+    textarea,
+    select {
+      width: 100%;
+      min-height: 52px;
+      border: 1px solid rgba(113, 121, 118, 0.35);
+      border-radius: 10px;
+      background: var(--surface-card);
+      color: var(--ink);
+      box-shadow: none;
+      outline: none;
+      font-family: var(--font-body);
+    }
+    .search-panel .searchbox input {
+      min-height: 52px;
+      border: 0;
+      background: transparent;
+      padding-left: 56px;
+      font-size: var(--hero-search-text-size);
+      color: var(--hero-search-text-color);
+    }
+    .search-panel .searchbox input::placeholder {
+      color: var(--hero-search-text-color);
+      opacity: 0.72;
+    }
+    .searchbox svg {
+      left: 20px;
+      color: #717976;
+      stroke-width: 2;
+    }
+    .searchbox input:focus,
+    .field:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(1, 38, 31, 0.1);
+    }
+    .primary {
+      min-height: 52px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--green);
+      color: white;
+      padding: 0 30px;
+      font-weight: 800;
+      box-shadow: var(--shadow);
+    }
+    .hero .primary {
+      min-width: 150px;
+      background: var(--green);
+      box-shadow: none;
+      font-size: 12px;
+      color: var(--hero-button-text-color);
+      font-size: var(--hero-button-text-size);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .secondary,
+    .mini-btn {
+      min-height: 46px;
+      border: 1px solid rgba(113, 121, 118, 0.4);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--green);
+      font-weight: 700;
+      box-shadow: none;
+    }
+
+    .section-head {
+      margin: 0 0 34px;
+      align-items: end;
+    }
+    #homeView .content-grid .section-head h2 {
+      font-size: var(--panel-title-size);
+      color: var(--green);
+    }
+    #homeView > .section-head:first-of-type,
+    #categoryStrip {
+      display: none;
+    }
+    #homeView .content-grid .section-head h2::after {
+      content: " Principales";
+    }
+    .content-grid { display: block; }
+    #serviceList.cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 32px;
+    }
+    .service-card {
+      position: relative;
+      min-height: 360px;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: flex-end;
+      padding: 24px;
+      border: 1px solid rgba(193, 200, 196, 0.28);
+      border-radius: 12px;
+      background: var(--surface-card);
+      color: white;
+      overflow: hidden;
+      text-align: left;
+      box-shadow: none;
+      transition: transform 220ms ease, box-shadow 220ms ease;
+    }
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-strong);
+    }
+    .service-card .thumb {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 0;
+      z-index: 0;
+      background: var(--surface-muted);
+    }
+    .service-card .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: none;
+    }
+    .service-card::after {
+      display: none;
+    }
+    .service-card .category-icon,
+    .service-card > span:not(.thumb),
+    .service-card > svg {
+      position: relative;
+      z-index: 2;
+    }
+    .service-card > span:not(.thumb) {
+      width: min(100%, 430px);
+      padding: 16px 18px;
+      border-radius: 12px;
+      background: rgba(252, 249, 248, 0.9);
+      color: var(--panel-card-text);
+      box-shadow: 0 10px 26px rgba(1, 38, 31, 0.08);
+      backdrop-filter: blur(10px);
+    }
+    .service-card .category-icon,
+    .service-card > svg {
+      display: none;
+    }
+    .service-card h3 {
+      color: var(--panel-card-text);
+      font-size: var(--panel-card-title-size);
+      font-weight: 800;
+      line-height: 1.2;
+    }
+    .service-card .meta {
+      color: var(--ink);
+      font-size: 14px;
+      margin-top: 6px;
+    }
+    .service-card .meta + .meta { display: none; }
+
+    #detailView {
+      display: grid;
+      grid-template-columns: 390px minmax(0, 1fr);
+      column-gap: 60px;
+      align-items: start;
+    }
+    #detailView:not(.active) { display: none; }
+    .detail-head {
+      grid-column: 2;
+      min-height: 0;
+      margin: 104px 0 64px;
+      padding: 0;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 16px;
+      align-items: start;
+      background: transparent;
+      color: var(--green);
+      box-shadow: none;
+      border-radius: 0;
+    }
+    .detail-icon {
+      width: 28px;
+      height: 28px;
+      border: 0;
+      border-radius: 0;
+      color: var(--green);
+      background: transparent;
+    }
+    .detail-head h1 {
+      color: var(--green);
+      font-size: clamp(48px, 5vw, 82px);
+      text-shadow: 3px 3px 0 rgba(201, 232, 203, 0.45);
+    }
+    .detail-head p {
+      max-width: 950px;
+      margin-top: 28px;
+      color: #303331;
+      font-size: 20px;
+      line-height: 1.55;
+    }
+    .toolbar {
+      grid-column: 1;
+      grid-row: 1 / span 3;
+      position: sticky;
+      top: 112px;
+      display: grid;
+      gap: 22px;
+      margin: 104px 0 0;
+      padding: 38px;
+      border: 1px solid rgba(193, 200, 196, 0.5);
+      border-radius: 16px;
+      background: rgba(252, 249, 248, 0.86);
+      box-shadow: var(--shadow);
+    }
+    .toolbar::before {
+      content: "Filters";
+      color: #07110e;
+      font: 800 30px/1.1 var(--font-display);
+    }
+    .toolbar .searchbox::before {
+      content: "Search by Name";
+      display: block;
+      margin-bottom: 12px;
+      color: #222;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .toolbar .searchbox input {
+      min-height: 58px;
+      border-radius: 10px;
+      padding-left: 52px;
+      background: var(--surface-card);
+    }
+    .toolbar select {
+      min-height: 58px;
+      border-radius: 10px;
+      padding: 0 16px;
+      color: var(--muted);
+    }
+    #professionalList.cards {
+      grid-column: 2;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 32px;
+    }
+    .pro-card {
+      min-height: 330px;
+      padding: 32px;
+      display: grid;
+      grid-template-columns: 72px 1fr auto;
+      grid-template-rows: auto 1fr auto;
+      gap: 16px 22px;
+      align-items: start;
+      border: 1px solid rgba(201, 232, 203, 0.48);
+      border-radius: 16px;
+      background: var(--surface-card);
+      box-shadow: var(--shadow);
+    }
+    .avatar {
+      width: 72px;
+      height: 72px;
+      border: 3px solid var(--surface-muted);
+      border-radius: 50%;
+      background: #e9e5e4;
+      color: var(--green);
+      font: 800 24px/1 var(--font-body);
+    }
+    .pro-card h3 {
+      font-size: 28px;
+      color: #06100d;
+    }
+    .pro-card .meta {
+      margin-top: 8px;
+      color: #4e6952;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .favorite {
+      width: 48px;
+      height: 48px;
+      border: 0;
+      border-radius: 50%;
+      background: transparent;
+      color: #b6bfbb;
+      box-shadow: none;
+    }
+    .favorite.on { color: var(--coral); }
+    .pro-card .primary {
+      grid-column: 2 / 4;
+      justify-self: end;
+      min-width: 190px;
+      background: var(--whatsapp);
+      color: white;
+      box-shadow: none;
+    }
+    .pro-card > div {
+      min-width: 0;
+    }
+    .pro-card > div::after {
+      content: "Especialista verificado en Inhala. Consulta disponibilidad y coordina tu turno por WhatsApp.";
+      display: block;
+      margin-top: 28px;
+      color: #303331;
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.5;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    #favoritesView {
+      padding-top: 90px;
+    }
+    #favoritesView .section-head {
+      margin-bottom: 72px;
+    }
+    #favoritesView h1 {
+      color: var(--green);
+      font-size: clamp(42px, 4vw, 62px);
+    }
+    #favoritesView #favoriteList.cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 32px;
+    }
+    #favoritesView .pro-card {
+      min-height: 300px;
+      grid-template-columns: 72px 1fr auto;
+    }
+    #favoritesView .pro-card .primary {
+      grid-column: 3;
+      min-width: 180px;
+    }
+    #favoritesView .pro-card::after {
+      content: "Profile";
+      grid-column: 1 / 3;
+      grid-row: 3;
+      min-height: 54px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(113, 121, 118, 0.42);
+      border-radius: 10px;
+      color: #1c1b1b;
+      font-size: 18px;
+    }
+
+    #loginView {
+      min-height: calc(100svh - 72px);
+      display: grid;
+      grid-template-columns: minmax(280px, 470px) minmax(320px, 560px);
+      justify-content: center;
+      align-content: center;
+      gap: 72px;
+      padding: 70px 24px;
+    }
+    #loginView:not(.active) { display: none; }
+    .login-copy {
+      align-self: start;
+    }
+    .login-return {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 42px;
+      border: 0;
+      background: transparent;
+      color: #1c1b1b;
+      padding: 0;
+      font-size: 17px;
+    }
+    .login-copy h1 {
+      color: var(--green);
+      font-size: clamp(42px, 4vw, 60px);
+    }
+    .login-copy p {
+      margin-top: 20px;
+      color: #303331;
+      font-size: 20px;
+      line-height: 1.55;
+    }
+    .login-box {
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      padding: 46px;
+      border: 1px solid rgba(193, 200, 196, 0.55);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 20px;
+    }
+    .login-box > h1,
+    .login-box > .hint {
+      display: none;
+    }
+    .login-user {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .login-user .avatar {
+      width: 62px;
+      height: 62px;
+    }
+    .login-user span {
+      display: block;
+      color: #222;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .login-user strong {
+      display: block;
+      margin-top: 4px;
+      color: #0a0d0c;
+      font-size: 20px;
+    }
+    .login-password-label {
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+    }
+    #passwordInput {
+      min-height: 64px;
+      font-size: 21px;
+      letter-spacing: 6px;
+    }
+    .login-box .primary {
+      min-height: 64px;
+      border-radius: 10px;
+      font-size: 17px;
+    }
+    .forgot-link {
+      justify-self: center;
+      color: #1a4f3f;
+      font-weight: 700;
+    }
+
+    body[data-route="admin"] main {
+      width: 100%;
+      max-width: none;
+      padding: 112px 30px 96px 450px;
+    }
+    body[data-route="admin"] .topbar {
+      background: rgba(252, 249, 248, 0.9);
+    }
+    body[data-route="admin"] .brand::after {
+      content: "Admin";
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      margin-left: 12px;
+      padding: 0 14px;
+      border-radius: 999px;
+      background: var(--surface-muted);
+      color: #313030;
+      font: 800 13px/1 var(--font-body);
+      letter-spacing: 0.12em;
+    }
+    body[data-route="admin"] .desktop-nav-link:nth-child(1)::before { content: "Dashboard"; font-size: 0; }
+    body[data-route="admin"] .desktop-nav-link:nth-child(1) { font-size: 0; }
+    body[data-route="admin"] .desktop-nav-link:nth-child(1)::after {
+      content: "Dashboard";
+      font-size: 17px;
+    }
+    body[data-route="admin"] .section-head {
+      min-height: 96px;
+      margin: 0 0 54px;
+      align-items: center;
+    }
+    body[data-route="admin"] .section-head h1 {
+      color: var(--green);
+      font-size: clamp(42px, 4vw, 58px);
+    }
+    body[data-route="admin"] .section-head .lead {
+      margin-top: 8px;
+      color: #303331;
+      font-size: 20px;
+    }
+    body[data-route="admin"] .section-head .top-actions {
+      display: flex;
+      flex-direction: row;
+      gap: 16px;
+    }
+    body[data-route="admin"] #exportData {
+      border-radius: 10px;
+      background: transparent;
+    }
+    body[data-route="admin"] #saveData {
+      min-height: 58px;
+      border-radius: 999px;
+      font-size: 24px;
+    }
+    body[data-route="admin"] .admin-shell {
+      position: relative;
+    }
+    body[data-route="admin"] .admin-shell::before {
+      content: "Dashboard\\A\\A Categorias\\A\\A Profesionales\\A\\A\\A\\A Settings";
+      white-space: pre-line;
+      position: fixed;
+      left: 30px;
+      top: 170px;
+      width: 320px;
+      min-height: 630px;
+      padding: 0;
+      color: #1c1b1b;
+      font-size: 22px;
+      line-height: 2.8;
+      pointer-events: none;
+    }
+    body[data-route="admin"] .admin-shell::after {
+      content: "System Status: Online\\A\\A Export JSON";
+      white-space: pre-line;
+      position: fixed;
+      left: 30px;
+      bottom: 92px;
+      width: 320px;
+      min-height: 140px;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      border: 1px solid rgba(193, 200, 196, 0.5);
+      border-radius: 12px;
+      background: rgba(252, 249, 248, 0.86);
+      box-shadow: var(--shadow);
+      color: #313030;
+      text-align: center;
+      pointer-events: none;
+    }
+    .admin-accordion {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 30px;
+      align-items: start;
+    }
+    .admin-card {
+      border: 1px solid rgba(193, 200, 196, 0.46);
+      border-radius: 16px;
+      background: var(--surface-card);
+      box-shadow: var(--shadow);
+    }
+    .admin-card:nth-child(1),
+    .admin-card:nth-child(2),
+    .admin-card:nth-child(3) {
+      min-height: 205px;
+    }
+    .admin-card:nth-child(n + 4) {
+      grid-column: span 3;
+    }
+    .admin-toggle {
+      min-height: 92px;
+      padding: 28px 30px;
+      background: transparent;
+    }
+    .admin-toggle h2 {
+      color: #07110e;
+      font-size: clamp(24px, 2.2vw, 34px);
+    }
+    .admin-toggle .hint {
+      margin-top: 8px;
+      color: #414846;
+    }
+    .admin-panel {
+      padding: 0 30px 30px;
+      border-top: 1px solid rgba(193, 200, 196, 0.34);
+    }
+    .organizer-row,
+    .admin-row {
+      border-color: rgba(193, 200, 196, 0.34);
+      background: rgba(252, 249, 248, 0.72);
+      border-radius: 10px;
+    }
+    .text-grid {
+      gap: 16px;
+    }
+    .field-group label {
+      color: #222;
+      letter-spacing: 0.12em;
+    }
+    .danger {
+      min-height: 42px;
+      border: 1px solid rgba(186, 26, 26, 0.18);
+      border-radius: 999px;
+      background: #ffdad6;
+      color: #93000a;
+      font-weight: 800;
+    }
+
+    .bottom-nav {
+      border-color: rgba(193, 200, 196, 0.6);
+      background: rgba(252, 249, 248, 0.92);
+      box-shadow: var(--shadow);
+    }
+    .bottom-nav button.active {
+      background: var(--green);
+      color: white;
+    }
+    .site-footer {
+      width: 100%;
+      margin: auto 0 0;
+      padding: 46px clamp(22px, 2.8vw, 48px);
+      border-top: 1px solid rgba(193, 200, 196, 0.38);
+      background: rgba(246, 243, 242, 0.65);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+      color: #313030;
+    }
+    body[data-route="landing"] .site-footer,
+    body[data-route="login"] .site-footer {
+      display: none;
+    }
+    .site-footer strong {
+      display: block;
+      color: #06100d;
+      font-size: 22px;
+    }
+    .site-footer p,
+    .site-footer nav a {
+      color: #414846;
+      font-size: 14px;
+    }
+    .site-footer nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+    }
+
+    @media (max-width: 1200px) {
+      #detailView {
+        grid-template-columns: 1fr;
+      }
+      .detail-head,
+      #professionalList.cards,
+      .toolbar {
+        grid-column: 1;
+      }
+      .toolbar {
+        position: static;
+        grid-row: auto;
+        margin: 0 0 34px;
+      }
+      .detail-head {
+        margin: 40px 0 36px;
+      }
+      body[data-route="admin"] main {
+        padding-left: 30px;
+      }
+      body[data-route="admin"] .admin-shell::before,
+      body[data-route="admin"] .admin-shell::after {
+        display: none;
+      }
+    }
+
+    @media (max-width: 900px) {
+      main {
+        padding: 96px 20px calc(106px + env(safe-area-inset-bottom));
+      }
+      .topbar {
+        min-height: 66px;
+        padding: 0 18px;
+      }
+      .desktop-nav,
+      .top-search,
+      .admin-login-link {
+        display: none;
+      }
+      .brand { font-size: 22px; }
+      .hero {
+        min-height: 470px;
+        padding: 34px 18px;
+      }
+      .search-panel {
+        grid-template-columns: 1fr;
+        border-radius: 20px;
+        padding: 12px;
+      }
+      .hero .primary { width: 100%; }
+      #serviceList.cards,
+      #professionalList.cards,
+      #favoritesView #favoriteList.cards,
+      .admin-accordion {
+        grid-template-columns: 1fr;
+      }
+      .admin-card:nth-child(n) {
+        grid-column: auto;
+      }
+      #loginView {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 96px 20px 48px;
+      }
+      .login-box { padding: 30px 22px; }
+      .site-footer {
+        align-items: flex-start;
+        flex-direction: column;
+        padding-bottom: 120px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .landing {
+        padding: 86px 16px 44px;
+      }
+      .landing-nav span { display: none; }
+      .landing-media {
+        height: 460px;
+      }
+      .landing-card {
+        margin-top: -290px;
+      }
+      .landing-card .primary {
+        width: 100%;
+      }
+      .service-card {
+        min-height: 290px;
+      }
+      .pro-card,
+      #favoritesView .pro-card {
+        grid-template-columns: 58px 1fr auto;
+        padding: 22px;
+      }
+      .avatar {
+        width: 58px;
+        height: 58px;
+      }
+      .pro-card h3 { font-size: 21px; }
+      .pro-card .primary,
+      #favoritesView .pro-card .primary {
+        grid-column: 1 / -1;
+        justify-self: stretch;
+        width: 100%;
+      }
+      #favoritesView .pro-card::after {
+        grid-column: 1 / -1;
+        grid-row: auto;
+      }
+    }
+
+    /* Responsive repair layer: prevents overlaps across app routes and viewports. */
+    .topbar {
+      display: grid;
+      grid-template-columns: auto auto minmax(0, 1fr) auto;
+      align-items: center;
+      gap: clamp(10px, 1.6vw, 24px);
+    }
+    #backBtn {
+      grid-column: 1;
+      justify-self: start;
+    }
+    .brand {
+      grid-column: 2;
+      min-width: max-content;
+      white-space: nowrap;
+    }
+    .desktop-nav {
+      grid-column: 3;
+      position: static;
+      transform: none;
+      justify-self: center;
+      max-width: 100%;
+      min-width: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+      gap: clamp(16px, 2.4vw, 34px);
+      padding: 0 6px;
+    }
+    .desktop-nav::-webkit-scrollbar {
+      display: none;
+    }
+    .desktop-nav-link {
+      flex: 0 0 auto;
+      white-space: nowrap;
+      font-size: clamp(14px, 1.15vw, 17px);
+    }
+    .top-actions {
+      grid-column: 4;
+      justify-self: end;
+      min-width: max-content;
+    }
+    body[data-route="admin"] .desktop-nav-link:nth-child(1)::before {
+      content: none;
+    }
+    body[data-route="admin"] .desktop-nav-link:nth-child(1) {
+      font-size: clamp(14px, 1.15vw, 17px);
+    }
+    body[data-route="admin"] .desktop-nav-link:nth-child(1)::after {
+      content: none;
+    }
+
+    body[data-route="admin"] main {
+      width: min(100%, 1500px);
+      padding: 112px clamp(18px, 3vw, 48px) 96px;
+    }
+    body[data-route="admin"] .leaf-lines,
+    body[data-route="admin"] .admin-shell::before,
+    body[data-route="admin"] .admin-shell::after {
+      display: none !important;
+      content: none !important;
+    }
+    body[data-route="admin"] .section-head {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: clamp(18px, 3vw, 42px);
+      align-items: center;
+      margin: 24px 0 clamp(28px, 4vw, 54px);
+    }
+    body[data-route="admin"] .section-head h1 {
+      max-width: 100%;
+      font-size: clamp(34px, 4.2vw, 58px);
+      line-height: 1.08;
+      overflow-wrap: anywhere;
+    }
+    body[data-route="admin"] .section-head .lead {
+      max-width: 720px;
+      font-size: clamp(15px, 1.45vw, 20px);
+      line-height: 1.55;
+    }
+    body[data-route="admin"] .section-head .top-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 14px;
+      min-width: 0;
+    }
+    body[data-route="admin"] #saveData,
+    body[data-route="admin"] #exportData {
+      min-height: 52px;
+      max-width: 100%;
+      white-space: nowrap;
+      font-size: clamp(14px, 1.6vw, 24px);
+    }
+    body[data-route="admin"] #saveData {
+      padding-inline: clamp(20px, 3vw, 34px);
+    }
+    body[data-route="admin"] #exportData {
+      padding-inline: 18px;
+    }
+    .admin-accordion {
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+      gap: clamp(16px, 2.2vw, 30px);
+    }
+    .admin-card,
+    .admin-card:nth-child(n),
+    .admin-card:nth-child(n + 4) {
+      grid-column: auto !important;
+      min-height: 0;
+    }
+    .admin-toggle {
+      min-height: 0;
+      padding: clamp(20px, 2.4vw, 30px);
+      align-items: start;
+    }
+    .admin-toggle h2 {
+      font-size: clamp(22px, 2.4vw, 34px);
+      line-height: 1.12;
+      overflow-wrap: anywhere;
+    }
+    .admin-toggle .hint {
+      font-size: clamp(13px, 1vw, 14px);
+      overflow-wrap: anywhere;
+    }
+    .admin-panel {
+      padding: 0 clamp(20px, 2.4vw, 30px) clamp(20px, 2.4vw, 30px);
+    }
+    .admin-row,
+    .admin-row.category-edit,
+    .organizer-row {
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr));
+      align-items: stretch;
+    }
+    .organizer-row .check-line {
+      min-height: 38px;
+    }
+
+    #serviceList.cards,
+    #professionalList.cards,
+    #favoritesView #favoriteList.cards {
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 310px), 1fr));
+    }
+    .service-card {
+      min-height: clamp(260px, 28vw, 380px);
+    }
+    #detailView {
+      grid-template-columns: minmax(260px, 360px) minmax(0, 1fr);
+      column-gap: clamp(28px, 4vw, 60px);
+    }
+    .toolbar {
+      padding: clamp(22px, 2.8vw, 38px);
+    }
+    .pro-card {
+      min-height: auto;
+      grid-template-columns: 72px minmax(0, 1fr) auto;
+    }
+
+    @media (max-width: 1180px) {
+      .topbar {
+        grid-template-columns: auto minmax(0, 1fr) auto;
+      }
+      #backBtn {
+        grid-column: 1;
+      }
+      .brand {
+        grid-column: 2;
+      }
+      .desktop-nav {
+        grid-column: 2;
+        justify-self: center;
+        max-width: min(100%, 460px);
+      }
+      .top-actions {
+        grid-column: 3;
+      }
+      body[data-route="admin"] .brand::after {
+        display: none;
+      }
+      body[data-route="admin"] .section-head {
+        grid-template-columns: 1fr;
+        align-items: start;
+      }
+      body[data-route="admin"] .section-head .top-actions {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .topbar {
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        min-height: 66px;
+      }
+      .desktop-nav {
+        display: none;
+      }
+      .brand {
+        grid-column: 2;
+        min-width: 0;
+      }
+      .top-actions {
+        grid-column: 3;
+      }
+      body[data-route="admin"] main {
+        padding: 92px 18px calc(98px + env(safe-area-inset-bottom));
+      }
+      body[data-route="admin"] .section-head .top-actions {
+        width: 100%;
+      }
+      body[data-route="admin"] #saveData,
+      body[data-route="admin"] #exportData {
+        flex: 1 1 190px;
+      }
+      #detailView {
+        grid-template-columns: 1fr;
+      }
+      .detail-head,
+      #professionalList.cards,
+      .toolbar {
+        grid-column: 1;
+      }
+      .toolbar {
+        position: static;
+        grid-row: auto;
+        margin: 0 0 28px;
+      }
+      .detail-head {
+        margin: 24px 0 28px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      body[data-route="admin"] .section-head h1 {
+        font-size: clamp(30px, 10vw, 42px);
+      }
+      body[data-route="admin"] .section-head .top-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+      body[data-route="admin"] #saveData,
+      body[data-route="admin"] #exportData {
+        width: 100%;
+      }
+      .admin-toggle {
+        grid-template-columns: minmax(0, 1fr) 24px;
+      }
+      .admin-toggle h2 {
+        font-size: 22px;
+      }
+    }
+
+    /* Image and main-panel customization overrides. */
+    .landing-media::after,
+    .hero::before,
+    .service-card::after {
+      display: none !important;
+      content: none !important;
+    }
+    .landing-media img,
+    .service-card .thumb img {
+      filter: none !important;
+      opacity: 1;
+      mix-blend-mode: normal;
+    }
+    .hero {
+      background-image: var(--hero-image, url("https://images.unsplash.com/photo-1463320726281-696a485928c7?q=80&w=1400&auto=format&fit=crop")) !important;
+    }
+    .hero h1,
+    #homeView .content-grid .section-head h2,
+    #favoritesView h1 {
+      font-size: var(--panel-title-size);
+      color: var(--green);
+    }
+    .hero h1,
+    .hero .lead {
+      color: inherit;
+    }
+    .hero h1 {
+      color: var(--hero-title-color);
+      font-family: var(--font-display);
+      font-size: var(--hero-title-size);
+    }
+    .hero .lead {
+      color: var(--hero-subtitle-color);
+      font-family: var(--font-body);
+      font-size: var(--hero-subtitle-size);
+    }
+    .service-card > span:not(.thumb) {
+      background: rgba(252, 249, 248, 0.92);
+      color: var(--panel-card-text);
+    }
+    .service-card h3 {
+      color: var(--panel-card-text);
+      font-size: var(--panel-card-title-size);
+    }
+    .service-card .meta {
+      color: var(--ink);
+    }
+    body,
+    main,
+    .topbar,
+    .site-footer {
+      background-color: var(--bg);
+    }
+    .topbar {
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+    }
   </style>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
@@ -1198,11 +2665,20 @@
         <img class="brand-logo" src="logo-inhala-co.svg" alt="">
         Inhala
       </a>
+      <nav class="desktop-nav" aria-label="Secciones principales">
+        <button type="button" class="desktop-nav-link active" data-desktop-route="home">Home</button>
+        <button type="button" class="desktop-nav-link nav-categories-link" data-desktop-route="home">Categories</button>
+        <button type="button" class="desktop-nav-link" data-desktop-route="favorites">Favorites</button>
+      </nav>
       <div class="top-actions">
+        <button class="top-search" type="button" aria-label="Buscar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+        </button>
         <a class="whatsapp-link" id="topWhatsappLink" href="#" target="_blank" rel="noreferrer">
           <svg viewBox="0 0 24 24"><path d="M12.04 2a9.86 9.86 0 0 0-8.45 14.95L2.2 22l5.18-1.36A9.9 9.9 0 1 0 12.04 2Zm0 1.8a8.1 8.1 0 1 1-4.1 15.08l-.3-.18-3.07.8.82-2.99-.2-.32A8.1 8.1 0 0 1 12.04 3.8Zm-3.4 4.3c-.17 0-.44.06-.67.31-.23.26-.88.86-.88 2.09s.9 2.42 1.02 2.59c.13.17 1.73 2.77 4.28 3.77 2.12.83 2.55.66 3.01.62.46-.04 1.48-.61 1.69-1.19.2-.58.2-1.08.14-1.19-.06-.1-.23-.17-.48-.29-.25-.13-1.48-.73-1.71-.82-.23-.08-.4-.12-.57.13-.17.25-.65.82-.8.99-.15.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.48-1.38-1.73-.15-.25-.02-.39.11-.51.12-.11.25-.29.38-.44.12-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.57-1.37-.78-1.88-.2-.49-.41-.42-.57-.43h-.49Z"/></svg>
           <span id="topWhatsappText">Escribinos por WhatsApp</span>
         </a>
+        <button class="admin-login-link" id="topAdminAccess" type="button">Admin Login</button>
       </div>
     </header>
 
@@ -1217,6 +2693,10 @@
     <main>
       <section class="view active" id="landingView">
         <div class="landing">
+          <div class="landing-nav">
+            <a class="landing-brand" href="#inicio">Inhala</a>
+            <span>Wellness &amp; Salud</span>
+          </div>
           <svg class="landing-branch" viewBox="0 0 360 260" fill="none" aria-hidden="true">
             <path d="M4 252C95 188 159 132 206 58" stroke="#687f34" stroke-width="5" stroke-linecap="round"/>
             <path d="M72 204c-23-12-41-14-67-3 12 26 34 35 67 3Z" fill="#6f9136"/>
@@ -1239,6 +2719,9 @@
             <path d="M127 112c-37-6-63 7-79 38 42 15 69 2 79-38Z" fill="#78943f"/>
             <path d="M160 50c-33 2-55 18-66 49 40 8 62-8 66-49Z" fill="#597a31"/>
           </svg>
+          <div class="landing-media" aria-hidden="true">
+            <img class="landing-hero-image" src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=1100&auto=format&fit=crop" alt="">
+          </div>
           <div class="landing-card">
             <div class="landing-logo-shell">
               <img class="landing-logo" src="logo-inhala-co.svg" alt="">
@@ -1327,11 +2810,28 @@
       </section>
 
       <section class="view" id="loginView">
+        <div class="login-copy">
+          <button class="login-return" type="button" id="loginReturn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m15 18-6-6 6-6"/><path d="M9 12h12"/></svg>
+            Volver al inicio
+          </button>
+          <h1>Panel Admin</h1>
+          <p>Ingresa tus credenciales para gestionar la plataforma Inhala.</p>
+        </div>
         <form class="login-box" id="loginForm">
+          <div class="login-user">
+            <span class="avatar">A</span>
+            <div>
+              <span>Administrador</span>
+              <strong>admin@inhala.wellness</strong>
+            </div>
+          </div>
           <h1 id="loginTitle">Panel de administración</h1>
           <p class="hint" id="loginSubtitle">Ingresá la contraseña del equipo para editar categorías, profesionales y teléfonos.</p>
+          <label class="login-password-label" for="passwordInput">Contraseña</label>
           <input class="field" id="passwordInput" type="password" placeholder="Contraseña" autocomplete="current-password" />
           <button class="primary" type="submit">Ingresar</button>
+          <a class="forgot-link" href="#inicio">¿Olvidaste tu contraseña?</a>
         </form>
       </section>
 
@@ -1351,6 +2851,18 @@
         </div>
       </section>
     </main>
+    <footer class="site-footer">
+      <div>
+        <strong>Inhala</strong>
+        <p>© 2024 Inhala Wellness. Respira profundo.</p>
+      </div>
+      <nav aria-label="Enlaces secundarios">
+        <a href="#whatsapp">WhatsApp Directo</a>
+        <a href="#terminos">Términos</a>
+        <a href="#privacidad">Privacidad</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </footer>
   </div>
 
   <nav class="bottom-nav" id="bottomNav" aria-label="Navegación principal" hidden>
@@ -1380,42 +2892,67 @@
     };
 
     const baseData = {
-      imageSet: "reference_v1",
-      themeSet: "logo_green_v1",
+      imageSet: "reference_desktop_v2",
+      themeSet: "inhala_editorial_v2",
       content: {
         logoUrl: "logo-inhala-co.svg",
-        heroImageUrl: "https://images.unsplash.com/photo-1463320726281-696a485928c7?q=80&w=1100&auto=format&fit=crop",
+        topRightLogoUrl: "",
+        heroImageUrl: "https://images.unsplash.com/photo-1463320726281-696a485928c7?q=80&w=1400&auto=format&fit=crop",
         brandTitle: "Inhala",
         landingTitle: "Inhala",
-        landingSubtitle: "Consultorios, terapias y cuidado personal en un solo lugar.",
-        landingClientButton: "Cliente",
+        landingSubtitle: "Conecta con profesionales en salud, belleza y terapias holísticas en un solo lugar.",
+        landingClientButton: "Ingresar como Cliente",
         whatsappLabel: "Escribinos por WhatsApp",
         whatsappTel: "5493415408319",
-        heroTitle: "Encuentra el bienestar que necesitas.",
-        heroSubtitle: "Elegí una especialidad, compará profesionales y escribí por WhatsApp sin vueltas.",
-        heroEmphasis: "Todo lo importante está a mano.",
-        searchPlaceholder: "Buscar servicio o profesional...",
-        clearButton: "Limpiar",
+        heroTitle: "Encuentra tu bienestar",
+        heroSubtitle: "Conecta con los mejores profesionales en salud, belleza y terapias holísticas en tu ciudad.",
+        heroEmphasis: "",
+        searchPlaceholder: "Busca por profesional, servicio o especialidad...",
+        clearButton: "Buscar",
         heroCardTitle: "Consultorios, terapias y cuidado personal en un solo lugar.",
         heroBadge: "Profesionales verificados",
         categoriesTitle: "Categorías",
         categoriesSubtitle: "Elegí una categoría para ver los profesionales disponibles.",
-        servicesTitle: "Servicios",
+        servicesTitle: "Categorías",
         servicesLoadedText: "áreas y {count} profesionales cargados.",
         favoritesTitle: "Favoritos",
         favoritesSubtitle: "Profesionales guardados para contactarlos más rápido.",
-        loginTitle: "Panel de administración",
-        loginSubtitle: "Ingresá la contraseña del equipo para editar categorías, profesionales, teléfonos y textos.",
-        adminTitle: "Panel de administración",
-        adminSubtitle: "Los cambios se guardan en este navegador y en Firebase cuando la nube está conectada.",
-        fontBody: "Futura, Futura PT, Avenir Next, Helvetica, Arial, sans-serif",
-        fontDisplay: "Futura, Futura PT, Avenir Next, Helvetica, Arial, sans-serif",
+        loginTitle: "Panel Admin",
+        loginSubtitle: "Ingresa tus credenciales para gestionar la plataforma Inhala.",
+        adminTitle: "Panel de Control",
+        adminSubtitle: "Estado de guardado: Conectado",
+        fontBody: "Manrope, Segoe UI, Helvetica, Arial, sans-serif",
+        fontDisplay: "Plus Jakarta Sans, Manrope, Segoe UI, Helvetica, Arial, sans-serif",
         bodySize: "16",
-        headingWeight: "900"
+        headingWeight: "900",
+        panelPrimaryColor: "#01261f",
+        panelBackgroundColor: "#fcf9f8",
+        panelTextColor: "#1c1b1b",
+        panelCardTextColor: "#01261f",
+        panelTitleSize: "42",
+        panelCardTitleSize: "22",
+        brandTextSize: "23",
+        navTextSize: "17",
+        heroBoxWidth: "900",
+        heroBoxMinHeight: "260",
+        heroBoxPadding: "46",
+        heroBoxRadius: "18",
+        heroBoxColor: "#01261f",
+        heroBoxOpacity: "58",
+        heroTitleSize: "52",
+        heroTitleColor: "#ffffff",
+        heroSubtitleSize: "20",
+        heroSubtitleColor: "#ffffff",
+        heroSearchTextSize: "16",
+        heroSearchTextColor: "#4d5754",
+        heroButtonTextSize: "12",
+        heroButtonTextColor: "#ffffff",
+        topRightLogoSize: "42"
       },
       adminPanel: {
         sections: [
           { id: "organizer", title: "Organización del panel", visible: true, open: true },
+          { id: "images", title: "Imágenes", visible: true, open: true },
           { id: "categories", title: "Categorías", visible: true, open: true },
           { id: "professionals", title: "Profesionales", visible: true, open: false },
           { id: "texts", title: "Textos de la web", visible: true, open: false },
@@ -1515,10 +3052,34 @@
           ...(next.content || {}),
           ...(useThemeDefaults ? {
             heroImageUrl: baseData.content.heroImageUrl,
+            topRightLogoUrl: baseData.content.topRightLogoUrl,
             fontBody: baseData.content.fontBody,
             fontDisplay: baseData.content.fontDisplay,
             bodySize: baseData.content.bodySize,
-            headingWeight: baseData.content.headingWeight
+            headingWeight: baseData.content.headingWeight,
+            panelPrimaryColor: baseData.content.panelPrimaryColor,
+            panelBackgroundColor: baseData.content.panelBackgroundColor,
+            panelTextColor: baseData.content.panelTextColor,
+            panelCardTextColor: baseData.content.panelCardTextColor,
+            panelTitleSize: baseData.content.panelTitleSize,
+            panelCardTitleSize: baseData.content.panelCardTitleSize,
+            brandTextSize: baseData.content.brandTextSize,
+            navTextSize: baseData.content.navTextSize,
+            heroBoxWidth: baseData.content.heroBoxWidth,
+            heroBoxMinHeight: baseData.content.heroBoxMinHeight,
+            heroBoxPadding: baseData.content.heroBoxPadding,
+            heroBoxRadius: baseData.content.heroBoxRadius,
+            heroBoxColor: baseData.content.heroBoxColor,
+            heroBoxOpacity: baseData.content.heroBoxOpacity,
+            heroTitleSize: baseData.content.heroTitleSize,
+            heroTitleColor: baseData.content.heroTitleColor,
+            heroSubtitleSize: baseData.content.heroSubtitleSize,
+            heroSubtitleColor: baseData.content.heroSubtitleColor,
+            heroSearchTextSize: baseData.content.heroSearchTextSize,
+            heroSearchTextColor: baseData.content.heroSearchTextColor,
+            heroButtonTextSize: baseData.content.heroButtonTextSize,
+            heroButtonTextColor: baseData.content.heroButtonTextColor,
+            topRightLogoSize: baseData.content.topRightLogoSize
           } : {})
         },
         adminPanel: { sections: orderedSections },
@@ -1601,6 +3162,9 @@
     function heroImageUrl() {
       return copy("heroImageUrl").trim() || baseData.content.heroImageUrl;
     }
+    function topRightLogoUrl() {
+      return copy("topRightLogoUrl").trim();
+    }
     function cssImageUrl(value) {
       return `url("${String(value || "").replace(/\\/g, "\\\\").replace(/"/g, "%22")}")`;
     }
@@ -1611,6 +3175,15 @@
       const number = Number(value);
       return Number.isFinite(number) ? Math.min(max, Math.max(min, number)) : fallback;
     }
+    function cssColor(value, fallback) {
+      const color = String(value || "").trim();
+      return /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(color) ? color : fallback;
+    }
+    function cssRgbTriplet(value, fallback) {
+      const color = cssColor(value, fallback).replace("#", "");
+      const full = color.length === 3 ? color.split("").map(char => char + char).join("") : color;
+      return `${parseInt(full.slice(0, 2), 16)} ${parseInt(full.slice(2, 4), 16)} ${parseInt(full.slice(4, 6), 16)}`;
+    }
     function setText(selector, value, allowHtml = false) {
       const el = $(selector);
       if (!el) return;
@@ -1620,16 +3193,51 @@
     function renderContent() {
       document.documentElement.style.setProperty("--font-body", cssFont(copy("fontBody"), baseData.content.fontBody));
       document.documentElement.style.setProperty("--font-display", cssFont(copy("fontDisplay"), baseData.content.fontDisplay));
-      document.documentElement.style.setProperty("--body-size", `${cssNumber(copy("bodySize"), 14, 20, 16)}px`);
+      document.documentElement.style.setProperty("--body-size", `${cssNumber(copy("bodySize"), 12, 28, 16)}px`);
       document.documentElement.style.setProperty("--heading-weight", String(cssNumber(copy("headingWeight"), 400, 900, 850)));
+      document.documentElement.style.setProperty("--green", cssColor(copy("panelPrimaryColor"), baseData.content.panelPrimaryColor));
+      document.documentElement.style.setProperty("--bg", cssColor(copy("panelBackgroundColor"), baseData.content.panelBackgroundColor));
+      document.documentElement.style.setProperty("--surface", cssColor(copy("panelBackgroundColor"), baseData.content.panelBackgroundColor));
+      document.documentElement.style.setProperty("--ink", cssColor(copy("panelTextColor"), baseData.content.panelTextColor));
+      document.documentElement.style.setProperty("--panel-card-text", cssColor(copy("panelCardTextColor"), baseData.content.panelCardTextColor));
+      document.documentElement.style.setProperty("--panel-title-size", `${cssNumber(copy("panelTitleSize"), 28, 72, 42)}px`);
+      document.documentElement.style.setProperty("--panel-card-title-size", `${cssNumber(copy("panelCardTitleSize"), 16, 38, 22)}px`);
+      document.documentElement.style.setProperty("--brand-text-size", `${cssNumber(copy("brandTextSize"), 14, 44, 23)}px`);
+      document.documentElement.style.setProperty("--nav-text-size", `${cssNumber(copy("navTextSize"), 12, 30, 17)}px`);
+      document.documentElement.style.setProperty("--hero-box-width", `${cssNumber(copy("heroBoxWidth"), 280, 1400, 900)}px`);
+      document.documentElement.style.setProperty("--hero-box-min-height", `${cssNumber(copy("heroBoxMinHeight"), 120, 720, 260)}px`);
+      document.documentElement.style.setProperty("--hero-box-padding", `${cssNumber(copy("heroBoxPadding"), 12, 96, 46)}px`);
+      document.documentElement.style.setProperty("--hero-box-radius", `${cssNumber(copy("heroBoxRadius"), 0, 48, 18)}px`);
+      document.documentElement.style.setProperty("--hero-box-rgb", cssRgbTriplet(copy("heroBoxColor"), baseData.content.heroBoxColor));
+      document.documentElement.style.setProperty("--hero-box-opacity", String(cssNumber(copy("heroBoxOpacity"), 0, 100, 58) / 100));
+      document.documentElement.style.setProperty("--hero-title-size", `${cssNumber(copy("heroTitleSize"), 22, 96, 52)}px`);
+      document.documentElement.style.setProperty("--hero-title-color", cssColor(copy("heroTitleColor"), baseData.content.heroTitleColor));
+      document.documentElement.style.setProperty("--hero-subtitle-size", `${cssNumber(copy("heroSubtitleSize"), 12, 42, 20)}px`);
+      document.documentElement.style.setProperty("--hero-subtitle-color", cssColor(copy("heroSubtitleColor"), baseData.content.heroSubtitleColor));
+      document.documentElement.style.setProperty("--hero-search-text-size", `${cssNumber(copy("heroSearchTextSize"), 11, 30, 16)}px`);
+      document.documentElement.style.setProperty("--hero-search-text-color", cssColor(copy("heroSearchTextColor"), baseData.content.heroSearchTextColor));
+      document.documentElement.style.setProperty("--hero-button-text-size", `${cssNumber(copy("heroButtonTextSize"), 10, 28, 12)}px`);
+      document.documentElement.style.setProperty("--hero-button-text-color", cssColor(copy("heroButtonTextColor"), baseData.content.heroButtonTextColor));
+      document.documentElement.style.setProperty("--top-right-logo-size", `${cssNumber(copy("topRightLogoSize"), 24, 96, 42)}px`);
       document.documentElement.style.setProperty("--hero-image", cssImageUrl(heroImageUrl()));
       const logo = escapeAttr(logoUrl());
       setText(".brand", `<img class="brand-logo" src="${logo}" alt="" onerror="this.onerror=null;this.src='logo-inhala-co.svg';">${escapeHtml(copy("brandTitle"))}`, true);
+      const topLogo = topRightLogoUrl();
+      const topAdmin = $("#topAdminAccess");
+      topAdmin.classList.toggle("has-logo", Boolean(topLogo));
+      topAdmin.style.backgroundImage = topLogo ? cssImageUrl(topLogo) : "";
       $$(".landing-logo").forEach(img => {
         img.src = logoUrl();
         img.onerror = () => {
           img.onerror = null;
           img.src = "logo-inhala-co.svg";
+        };
+      });
+      $$(".landing-hero-image").forEach(img => {
+        img.src = heroImageUrl();
+        img.onerror = () => {
+          img.onerror = null;
+          img.src = "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=1100&auto=format&fit=crop";
         };
       });
       document.documentElement.style.setProperty("--landing-logo-bg", `url("${logoUrl().replace(/"/g, "%22")}") center / min(76vw, 620px) no-repeat`);
@@ -1762,6 +3370,7 @@
 
     const adminSectionMeta = {
       organizer: { title: "Organización del panel", hint: "Elegí qué bloques ver y acomodalos en el orden que te resulte más cómodo.", target: "AdminOrganizer" },
+      images: { title: "Imágenes", hint: "Cambiá el logo y la imagen del recuadro principal con URLs directas.", target: "AdminImages" },
       categories: { title: "Categorías", hint: "Editá nombre, descripción, color e imagen de cada área.", target: "AdminCategories" },
       professionals: { title: "Profesionales", hint: "Cargá nombres, especialidades y teléfonos de WhatsApp.", target: "AdminProfessionals" },
       texts: { title: "Textos de la web", hint: "Modificá títulos, subtítulos, botones y textos visibles.", target: "AdminTexts" },
@@ -1820,6 +3429,7 @@
       }));
 
       renderAdminOrganizer();
+      renderAdminImages();
       renderAdminCategories();
       renderAdminProfessionals();
       renderAdminTexts();
@@ -1871,6 +3481,29 @@
       }));
     }
 
+    function renderAdminImages() {
+      const root = $("#AdminImages");
+      if (!root) return;
+      root.innerHTML = `
+        <div class="text-grid">
+          <div class="field-group full">
+            <label for="image-logoUrl">Logo principal: URL de imagen</label>
+            <input class="field" id="image-logoUrl" value="${escapeAttr(copy("logoUrl"))}" data-content-field="logoUrl">
+          </div>
+          <div class="field-group full">
+            <label for="image-topRightLogoUrl">Logo esquina superior derecha: URL de imagen</label>
+            <input class="field" id="image-topRightLogoUrl" value="${escapeAttr(copy("topRightLogoUrl"))}" data-content-field="topRightLogoUrl" placeholder="https://...">
+          </div>
+          <div class="field-group full">
+            <label for="image-heroImageUrl">Recuadro principal: URL de imagen</label>
+            <input class="field" id="image-heroImageUrl" value="${escapeAttr(copy("heroImageUrl"))}" data-content-field="heroImageUrl">
+          </div>
+        </div>
+        <p class="hint" style="margin-top:12px">Pegá una URL pública de imagen. El recuadro principal se actualiza al instante y se guarda al tocar Guardar cambios.</p>
+      `;
+      bindAdminFields(root);
+    }
+
     function renderAdminCategories() {
       const root = $("#AdminCategories");
       if (!root) return;
@@ -1916,8 +3549,6 @@
 
     function renderAdminTexts() {
       const fields = [
-        ["logoUrl", "Logo: URL de imagen"],
-        ["heroImageUrl", "Cuadro principal: URL de imagen"],
         ["brandTitle", "Marca"],
         ["landingTitle", "Inicio: título"],
         ["landingSubtitle", "Inicio: subtítulo", true],
@@ -1965,6 +3596,8 @@
       const root = $("#AdminTypography");
       if (!root) return;
       const bodyOptions = [
+        ["Manrope, Segoe UI, Helvetica, Arial, sans-serif", "Manrope"],
+        ["Plus Jakarta Sans, Manrope, Segoe UI, Helvetica, Arial, sans-serif", "Plus Jakarta Sans"],
         ["Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif", "Inter / Sistema"],
         ["Helvetica Neue, Helvetica, Arial, sans-serif", "Helvetica"],
         ["Futura, Futura PT, Trebuchet MS, Arial, sans-serif", "Futura"],
@@ -1976,6 +3609,8 @@
         ["Trebuchet MS, Arial, sans-serif", "Trebuchet"]
       ];
       const displayOptions = [
+        ["Plus Jakarta Sans, Manrope, Segoe UI, Helvetica, Arial, sans-serif", "Plus Jakarta Sans"],
+        ["Manrope, Segoe UI, Helvetica, Arial, sans-serif", "Manrope"],
         ["Georgia, Times New Roman, serif", "Georgia"],
         ["Bodoni 72, Bodoni MT, Didot, Times New Roman, serif", "Bodoni"],
         ["Garamond, EB Garamond, Adobe Garamond Pro, Georgia, serif", "Garamond"],
@@ -2004,13 +3639,105 @@
           </div>
           <div class="field-group">
             <label for="bodySize">Tamaño base</label>
-            <input class="field" id="bodySize" type="number" min="14" max="20" value="${escapeAttr(copy("bodySize"))}" data-content-field="bodySize">
+            <input class="field" id="bodySize" type="number" min="12" max="28" value="${escapeAttr(copy("bodySize"))}" data-content-field="bodySize">
           </div>
           <div class="field-group">
             <label for="headingWeight">Peso de títulos</label>
             <select id="headingWeight" data-content-field="headingWeight">
               ${[500, 600, 700, 800, 850, 900].map(weight => `<option value="${weight}" ${String(copy("headingWeight")) === String(weight) ? "selected" : ""}>${weight}</option>`).join("")}
             </select>
+          </div>
+          <div class="field-group">
+            <label for="panelPrimaryColor">Color principal</label>
+            <input class="field" id="panelPrimaryColor" type="color" value="${escapeAttr(copy("panelPrimaryColor"))}" data-content-field="panelPrimaryColor">
+          </div>
+          <div class="field-group">
+            <label for="panelBackgroundColor">Color de fondo</label>
+            <input class="field" id="panelBackgroundColor" type="color" value="${escapeAttr(copy("panelBackgroundColor"))}" data-content-field="panelBackgroundColor">
+          </div>
+          <div class="field-group">
+            <label for="panelTextColor">Color de texto</label>
+            <input class="field" id="panelTextColor" type="color" value="${escapeAttr(copy("panelTextColor"))}" data-content-field="panelTextColor">
+          </div>
+          <div class="field-group">
+            <label for="panelCardTextColor">Color textos en imÃ¡genes</label>
+            <input class="field" id="panelCardTextColor" type="color" value="${escapeAttr(copy("panelCardTextColor"))}" data-content-field="panelCardTextColor">
+          </div>
+          <div class="field-group">
+            <label for="panelTitleSize">TamaÃ±o tÃ­tulos panel</label>
+            <input class="field" id="panelTitleSize" type="number" min="28" max="72" value="${escapeAttr(copy("panelTitleSize"))}" data-content-field="panelTitleSize">
+          </div>
+          <div class="field-group">
+            <label for="panelCardTitleSize">TamaÃ±o tÃ­tulos tarjetas</label>
+            <input class="field" id="panelCardTitleSize" type="number" min="16" max="38" value="${escapeAttr(copy("panelCardTitleSize"))}" data-content-field="panelCardTitleSize">
+          </div>
+          <div class="field-group">
+            <label for="brandTextSize">TamaÃ±o marca superior</label>
+            <input class="field" id="brandTextSize" type="number" min="14" max="44" value="${escapeAttr(copy("brandTextSize"))}" data-content-field="brandTextSize">
+          </div>
+          <div class="field-group">
+            <label for="navTextSize">TamaÃ±o navegaciÃ³n</label>
+            <input class="field" id="navTextSize" type="number" min="12" max="30" value="${escapeAttr(copy("navTextSize"))}" data-content-field="navTextSize">
+          </div>
+          <div class="field-group">
+            <label for="topRightLogoSize">TamaÃ±o logo superior derecho</label>
+            <input class="field" id="topRightLogoSize" type="number" min="24" max="96" value="${escapeAttr(copy("topRightLogoSize"))}" data-content-field="topRightLogoSize">
+          </div>
+          <div class="field-group">
+            <label for="heroBoxWidth">Ancho cuadro Encontrate</label>
+            <input class="field" id="heroBoxWidth" type="number" min="280" max="1400" value="${escapeAttr(copy("heroBoxWidth"))}" data-content-field="heroBoxWidth">
+          </div>
+          <div class="field-group">
+            <label for="heroBoxMinHeight">Alto mÃ­nimo cuadro Encontrate</label>
+            <input class="field" id="heroBoxMinHeight" type="number" min="120" max="720" value="${escapeAttr(copy("heroBoxMinHeight"))}" data-content-field="heroBoxMinHeight">
+          </div>
+          <div class="field-group">
+            <label for="heroBoxPadding">Espaciado cuadro Encontrate</label>
+            <input class="field" id="heroBoxPadding" type="number" min="12" max="96" value="${escapeAttr(copy("heroBoxPadding"))}" data-content-field="heroBoxPadding">
+          </div>
+          <div class="field-group">
+            <label for="heroBoxRadius">Bordes cuadro Encontrate</label>
+            <input class="field" id="heroBoxRadius" type="number" min="0" max="48" value="${escapeAttr(copy("heroBoxRadius"))}" data-content-field="heroBoxRadius">
+          </div>
+          <div class="field-group">
+            <label for="heroBoxColor">Color cuadro Encontrate</label>
+            <input class="field" id="heroBoxColor" type="color" value="${escapeAttr(copy("heroBoxColor"))}" data-content-field="heroBoxColor">
+          </div>
+          <div class="field-group">
+            <label for="heroBoxOpacity">Opacidad cuadro Encontrate</label>
+            <input class="field" id="heroBoxOpacity" type="number" min="0" max="100" value="${escapeAttr(copy("heroBoxOpacity"))}" data-content-field="heroBoxOpacity">
+          </div>
+          <div class="field-group">
+            <label for="heroTitleSize">TamaÃ±o tÃ­tulo Encontrate</label>
+            <input class="field" id="heroTitleSize" type="number" min="22" max="96" value="${escapeAttr(copy("heroTitleSize"))}" data-content-field="heroTitleSize">
+          </div>
+          <div class="field-group">
+            <label for="heroTitleColor">Color tÃ­tulo Encontrate</label>
+            <input class="field" id="heroTitleColor" type="color" value="${escapeAttr(copy("heroTitleColor"))}" data-content-field="heroTitleColor">
+          </div>
+          <div class="field-group">
+            <label for="heroSubtitleSize">TamaÃ±o subtÃ­tulo Encontrate</label>
+            <input class="field" id="heroSubtitleSize" type="number" min="12" max="42" value="${escapeAttr(copy("heroSubtitleSize"))}" data-content-field="heroSubtitleSize">
+          </div>
+          <div class="field-group">
+            <label for="heroSubtitleColor">Color subtÃ­tulo Encontrate</label>
+            <input class="field" id="heroSubtitleColor" type="color" value="${escapeAttr(copy("heroSubtitleColor"))}" data-content-field="heroSubtitleColor">
+          </div>
+          <div class="field-group">
+            <label for="heroSearchTextSize">TamaÃ±o texto buscador</label>
+            <input class="field" id="heroSearchTextSize" type="number" min="11" max="30" value="${escapeAttr(copy("heroSearchTextSize"))}" data-content-field="heroSearchTextSize">
+          </div>
+          <div class="field-group">
+            <label for="heroSearchTextColor">Color texto buscador</label>
+            <input class="field" id="heroSearchTextColor" type="color" value="${escapeAttr(copy("heroSearchTextColor"))}" data-content-field="heroSearchTextColor">
+          </div>
+          <div class="field-group">
+            <label for="heroButtonTextSize">TamaÃ±o texto botÃ³n</label>
+            <input class="field" id="heroButtonTextSize" type="number" min="10" max="28" value="${escapeAttr(copy("heroButtonTextSize"))}" data-content-field="heroButtonTextSize">
+          </div>
+          <div class="field-group">
+            <label for="heroButtonTextColor">Color texto botÃ³n</label>
+            <input class="field" id="heroButtonTextColor" type="color" value="${escapeAttr(copy("heroButtonTextColor"))}" data-content-field="heroButtonTextColor">
           </div>
         </div>
         <div class="typography-preview">
@@ -2108,6 +3835,10 @@
       $("#backBtn").hidden = route === "landing" || route === "home";
       $("#bottomNav").hidden = !["home", "detail", "favorites"].includes(route);
       $$(".bottom-nav button").forEach(btn => btn.classList.toggle("active", btn.dataset.route === route || (route === "detail" && btn.dataset.route === "home")));
+      $$("[data-desktop-route]").forEach(btn => {
+        const isCategories = btn.classList.contains("nav-categories-link");
+        btn.classList.toggle("active", isCategories ? route === "detail" : (btn.dataset.desktopRoute === route || (route === "admin" && btn.dataset.desktopRoute === "home")));
+      });
       renderCategoryStrip();
       renderServices();
       renderFavorites();
@@ -2131,11 +3862,14 @@
     $("#sortSelect").addEventListener("change", renderDetail);
     $("#clientAccess").addEventListener("click", () => setRoute("home"));
     $("#hiddenAdminAccess").addEventListener("click", () => setRoute("login"));
+    $("#topAdminAccess").addEventListener("click", () => setRoute("login"));
+    $("#loginReturn").addEventListener("click", () => setRoute("landing"));
     $("#backBtn").addEventListener("click", () => {
       if (route === "detail" || route === "favorites") setRoute("home");
       else setRoute("landing");
     });
     $$(".bottom-nav button[data-route]").forEach(btn => btn.addEventListener("click", () => setRoute(btn.dataset.route)));
+    $$("[data-desktop-route]").forEach(btn => btn.addEventListener("click", () => setRoute(btn.dataset.desktopRoute)));
     $("#loginForm").addEventListener("submit", event => {
       event.preventDefault();
       if ($("#passwordInput").value === PASSWORD) {
