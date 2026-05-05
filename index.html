@@ -2650,6 +2650,234 @@
     .topbar {
       background: color-mix(in srgb, var(--bg) 88%, transparent);
     }
+
+    /* Full-width density layer: uses available screen space for admin and professional data. */
+    body[data-route="admin"] main,
+    body[data-route="detail"] main,
+    body[data-route="favorites"] main {
+      width: 100%;
+      max-width: 1720px;
+    }
+
+    body[data-route="admin"] .section-head {
+      margin: 18px 0 clamp(20px, 2.6vw, 34px);
+    }
+
+    body[data-route="admin"] .admin-accordion {
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr));
+      align-items: start;
+      grid-auto-flow: dense;
+    }
+
+    body[data-route="admin"] .admin-card:not(.closed) {
+      grid-column: 1 / -1 !important;
+    }
+
+    body[data-route="admin"] .admin-card.closed .admin-toggle {
+      min-height: 132px;
+    }
+
+    body[data-route="admin"] .admin-card:not(.closed) .admin-toggle {
+      min-height: 0;
+      padding-bottom: 18px;
+    }
+
+    body[data-route="admin"] .admin-panel {
+      padding-inline: clamp(18px, 2vw, 34px);
+    }
+
+    body[data-route="admin"] .text-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+      gap: 18px clamp(16px, 1.6vw, 24px);
+      align-items: end;
+    }
+
+    body[data-route="admin"] .field-group.full {
+      grid-column: 1 / -1;
+    }
+
+    body[data-route="admin"] .field-group label {
+      max-width: 100%;
+      min-height: auto;
+      margin-bottom: 8px;
+      color: #2d3330;
+      font-size: 12px;
+      line-height: 1.25;
+      letter-spacing: 0.06em;
+      overflow-wrap: anywhere;
+    }
+
+    body[data-route="admin"] label[for="panelCardTextColor"],
+    body[data-route="admin"] label[for="panelTitleSize"],
+    body[data-route="admin"] label[for="panelCardTitleSize"],
+    body[data-route="admin"] label[for="brandTextSize"],
+    body[data-route="admin"] label[for="navTextSize"],
+    body[data-route="admin"] label[for="topRightLogoSize"],
+    body[data-route="admin"] label[for="heroBoxMinHeight"],
+    body[data-route="admin"] label[for="heroTitleSize"],
+    body[data-route="admin"] label[for="heroTitleColor"],
+    body[data-route="admin"] label[for="heroSubtitleSize"],
+    body[data-route="admin"] label[for="heroSubtitleColor"],
+    body[data-route="admin"] label[for="heroSearchTextSize"],
+    body[data-route="admin"] label[for="heroButtonTextSize"],
+    body[data-route="admin"] label[for="heroButtonTextColor"] {
+      font-size: 0;
+    }
+
+    body[data-route="admin"] label[for="panelCardTextColor"]::after { content: "Color textos en imagenes"; }
+    body[data-route="admin"] label[for="panelTitleSize"]::after { content: "Tamano titulos panel"; }
+    body[data-route="admin"] label[for="panelCardTitleSize"]::after { content: "Tamano titulos tarjetas"; }
+    body[data-route="admin"] label[for="brandTextSize"]::after { content: "Tamano marca superior"; }
+    body[data-route="admin"] label[for="navTextSize"]::after { content: "Tamano navegacion"; }
+    body[data-route="admin"] label[for="topRightLogoSize"]::after { content: "Tamano logo superior derecho"; }
+    body[data-route="admin"] label[for="heroBoxMinHeight"]::after { content: "Alto minimo cuadro Encontrate"; }
+    body[data-route="admin"] label[for="heroTitleSize"]::after { content: "Tamano titulo Encontrate"; }
+    body[data-route="admin"] label[for="heroTitleColor"]::after { content: "Color titulo Encontrate"; }
+    body[data-route="admin"] label[for="heroSubtitleSize"]::after { content: "Tamano subtitulo Encontrate"; }
+    body[data-route="admin"] label[for="heroSubtitleColor"]::after { content: "Color subtitulo Encontrate"; }
+    body[data-route="admin"] label[for="heroSearchTextSize"]::after { content: "Tamano texto buscador"; }
+    body[data-route="admin"] label[for="heroButtonTextSize"]::after { content: "Tamano texto boton"; }
+    body[data-route="admin"] label[for="heroButtonTextColor"]::after { content: "Color texto boton"; }
+
+    body[data-route="admin"] .field-group label::after {
+      font-size: 12px;
+      line-height: 1.25;
+      letter-spacing: 0.06em;
+    }
+
+    body[data-route="admin"] .field,
+    body[data-route="admin"] select,
+    body[data-route="admin"] textarea {
+      width: 100%;
+      min-width: 0;
+      min-height: 48px;
+    }
+
+    body[data-route="admin"] .organizer-row,
+    body[data-route="admin"] .admin-row,
+    body[data-route="admin"] .admin-row.category-edit {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr));
+      gap: 12px;
+      width: 100%;
+      padding: 12px;
+    }
+
+    #AdminProfessionals {
+      display: grid;
+      gap: clamp(22px, 2vw, 34px);
+    }
+
+    .admin-prof-group {
+      display: grid;
+      gap: 14px;
+      padding: clamp(16px, 1.8vw, 24px);
+      border: 1px solid rgba(193, 200, 196, 0.42);
+      border-radius: 14px;
+      background: rgba(252, 249, 248, 0.7);
+    }
+
+    .admin-prof-group .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 16px;
+      margin: 0;
+      min-height: 0;
+    }
+
+    .admin-prof-group .section-head h2 {
+      font-size: clamp(24px, 2.2vw, 34px);
+      line-height: 1.08;
+      overflow-wrap: anywhere;
+    }
+
+    .admin-pro-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 430px), 1fr));
+      gap: 12px;
+    }
+
+    .admin-pro-grid .admin-row {
+      grid-template-columns: minmax(140px, 1.25fr) minmax(130px, 1fr) minmax(130px, 0.9fr) auto;
+      align-items: center;
+    }
+
+    .admin-pro-grid .danger {
+      min-width: 110px;
+      align-self: stretch;
+    }
+
+    #detailView {
+      grid-template-columns: minmax(250px, 330px) minmax(0, 1fr);
+      column-gap: clamp(22px, 3vw, 44px);
+    }
+
+    #professionalList.cards,
+    #favoritesView #favoriteList.cards {
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr));
+      gap: clamp(18px, 1.9vw, 28px);
+      align-items: stretch;
+    }
+
+    .pro-card,
+    #favoritesView .pro-card {
+      min-height: 0;
+      height: 100%;
+      padding: clamp(20px, 2vw, 28px);
+      grid-template-columns: 64px minmax(0, 1fr) auto;
+      gap: 14px 18px;
+    }
+
+    .avatar {
+      width: 64px;
+      height: 64px;
+    }
+
+    .pro-card h3 {
+      font-size: clamp(22px, 1.55vw, 28px);
+      line-height: 1.1;
+      overflow-wrap: anywhere;
+    }
+
+    .pro-card > div::after {
+      margin-top: 18px;
+    }
+
+    .pro-card .primary,
+    #favoritesView .pro-card .primary {
+      grid-column: 1 / -1;
+      justify-self: stretch;
+      width: 100%;
+      min-width: 0;
+    }
+
+    @media (min-width: 1280px) {
+      body[data-route="admin"] .admin-card:not(.closed):has(#AdminTypography) .text-grid,
+      body[data-route="admin"] .admin-card:not(.closed):has(#AdminTexts) .text-grid {
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      }
+
+      body[data-route="admin"] .admin-card:not(.closed):has(#AdminCategories) .admin-row.category-edit {
+        grid-template-columns: minmax(170px, 0.9fr) minmax(280px, 1.6fr) auto minmax(260px, 1.5fr) 92px;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .admin-prof-group .section-head,
+      .admin-pro-grid .admin-row {
+        grid-template-columns: 1fr;
+      }
+
+      .admin-prof-group .section-head .secondary,
+      .admin-pro-grid .danger {
+        width: 100%;
+      }
+
+      #detailView {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
@@ -3530,10 +3758,12 @@
       const root = $("#AdminProfessionals");
       if (!root) return;
       root.innerHTML = data.services.map(service => `
+          <section class="admin-prof-group">
           <div class="section-head">
             <div><h2>${escapeHtml(service.title)}</h2><p class="hint">${countPros(service.id)} profesionales</p></div>
             <button class="secondary" data-add-pro="${service.id}">Agregar profesional</button>
           </div>
+          <div class="admin-pro-grid">
           ${(data.professionals[service.id] || []).map(pro => `
             <div class="admin-row">
               <input class="field" value="${escapeAttr(pro.name)}" data-pro-field="${service.id}:${pro.id}:name" aria-label="Nombre">
@@ -3542,6 +3772,8 @@
               <button class="danger" data-delete-pro="${service.id}:${pro.id}">Quitar</button>
             </div>
           `).join("") || `<div class="empty">No hay profesionales cargados.</div>`}
+          </div>
+          </section>
       `).join("");
       $$("[data-add-pro]").forEach(btn => btn.addEventListener("click", () => addProfessional(btn.dataset.addPro)));
       bindAdminFields(root);
