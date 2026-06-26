@@ -2000,6 +2000,67 @@
     /* Auditoría visual · iteración 3: limpieza final de referencia y recursos */
     .leaf-lines { display: none !important; }
     img { content-visibility: auto; }
+
+    /* Ajuste solicitado: hero compacto y sin buscador principal */
+    .hero {
+      min-height: 318px;
+      margin-bottom: 28px;
+      background-position: center right;
+    }
+    .hero > div:first-child {
+      width: min(61%, 560px);
+      min-height: 318px;
+      padding: 72px 48px 38px;
+      justify-content: center;
+    }
+    .hero h1 {
+      max-width: 500px;
+      font-size: clamp(44px, 5.4vw, 61px);
+    }
+    .hero .lead {
+      max-width: 470px;
+      margin-top: 12px;
+      font-size: clamp(15px, 1.65vw, 18px);
+    }
+
+    @media (max-width: 760px) {
+      .hero {
+        min-height: 316px;
+        background-position: 61% center;
+      }
+      .hero > div:first-child {
+        min-height: 316px;
+        padding: 66px 23px 30px;
+        justify-content: center;
+      }
+      .hero h1 {
+        max-width: 76%;
+        font-size: clamp(40px, 11vw, 52px);
+      }
+      .hero .lead {
+        max-width: 68%;
+        margin-top: 10px;
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .hero { min-height: 286px; }
+      .hero > div:first-child {
+        min-height: 286px;
+        padding: 58px 20px 24px;
+      }
+      .hero h1 {
+        max-width: 78%;
+        font-size: 38px;
+      }
+      .hero .lead {
+        max-width: 70%;
+        font-size: 14.5px;
+        line-height: 1.38;
+      }
+    }
+
 </style>
   <script defer src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script defer src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
@@ -2080,13 +2141,6 @@
           <div>
             <h1 id="heroTitle">Encuentra el bienestar que necesitas.</h1>
             <p class="lead" id="heroSubtitle">Elegí una especialidad, compará profesionales y escribí por WhatsApp sin vueltas. <strong>Todo lo importante está a mano.</strong></p>
-            <div class="search-panel">
-              <label class="searchbox">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
-                <input id="searchInput" type="search" placeholder="Buscar servicio o profesional..." autocomplete="off" />
-              </label>
-              <button class="primary" id="clearSearch">Limpiar</button>
-            </div>
           </div>
           <div class="hero-card">
             <strong id="heroCardTitle">Consultorios, terapias y cuidado personal en un solo lugar.</strong>
@@ -2457,8 +2511,6 @@
       $("#topWhatsappLink").href = `https://wa.me/${encodeURIComponent(copy("whatsappTel"))}`;
       setText("#heroTitle", copy("heroTitle"));
       setText("#heroSubtitle", `${escapeHtml(copy("heroSubtitle"))} <strong>${escapeHtml(copy("heroEmphasis"))}</strong>`, true);
-      $("#searchInput").placeholder = copy("searchPlaceholder");
-      setText("#clearSearch", copy("clearButton"));
       setText("#heroCardTitle", copy("heroCardTitle"));
       setText("#heroBadge", copy("heroBadge"));
       setText("#categoriesTitle", copy("categoriesTitle"));
@@ -2497,16 +2549,9 @@
     }
 
     function renderServices() {
-      const query = normalize($("#searchInput").value);
       const pros = allProfessionals();
-      const services = data.services.filter(service => {
-        const ownMatch = normalize(service.title + " " + service.summary).includes(query);
-        const proMatch = pros.some(pro => pro.service.id === service.id && normalize(pro.name + " " + pro.spec).includes(query));
-        return !query || ownMatch || proMatch;
-      });
-      $("#resultHint").textContent = query
-        ? `${services.length} resultados para tu búsqueda.`
-        : `${data.services.length} ${copy("servicesLoadedText").replace("{count}", pros.length)}`;
+      const services = data.services;
+      $("#resultHint").textContent = `${data.services.length} ${copy("servicesLoadedText").replace("{count}", pros.length)}`;
       $("#serviceList").innerHTML = services.length ? services.map(service => `
         <button class="service-card" data-service="${service.id}">
           <span class="thumb"><img src="${escapeAttr(service.img)}" alt="" loading="lazy" decoding="async"></span>
@@ -2744,8 +2789,6 @@
         ["heroTitle", "Hero: título principal", true],
         ["heroSubtitle", "Hero: subtítulo", true],
         ["heroEmphasis", "Hero: frase resaltada"],
-        ["searchPlaceholder", "Buscador: placeholder"],
-        ["clearButton", "Buscador: botón"],
         ["heroCardTitle", "Imagen hero: título", true],
         ["heroBadge", "Imagen hero: texto inferior"],
         ["categoriesTitle", "Categorías: título"],
@@ -2882,8 +2925,6 @@
       return escapeHtml(value).replace(/`/g, "&#096;");
     }
 
-    $("#searchInput").addEventListener("input", renderServices);
-    $("#clearSearch").addEventListener("click", () => { $("#searchInput").value = ""; renderServices(); });
     $("#professionalSearch").addEventListener("input", renderDetail);
     $("#sortSelect").addEventListener("change", renderDetail);
     $("#clientAccess").addEventListener("click", () => setRoute("home"));
